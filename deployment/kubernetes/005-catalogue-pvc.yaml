@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ${CATALOGUE_APP_NAME}-data
+  namespace: ${CATALOGUE_NAMESPACE}
+spec:
+  storageClassName: nfs-storageclass
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+

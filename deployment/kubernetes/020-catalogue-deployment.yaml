@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${CATALOGUE_APP_NAME}
+  namespace: ${CATALOGUE_NAMESPACE}
+  labels:
+    app: ${CATALOGUE_APP_NAME}
+spec:
+  selector:
+    matchLabels:
+      app: ${CATALOGUE_APP_NAME}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ${CATALOGUE_APP_NAME}
+    spec:
+      containers:
+        - name: ${CATALOGUE_APP_NAME}
+          image: ${CATALOGUE_DOCKER_REGISTRY}:${CATALOGUE_IMAGETAG}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3030
+              name: catalogue
+          envFrom:
+            - secretRef:
+                name: ${CATALOGUE_APP_NAME}-secret
+          volumeMounts:
+            - name: ${CATALOGUE_APP_NAME}-data
+              mountPath: /fuseki
+      volumes:
+        - name: ${CATALOGUE_APP_NAME}-data
+          persistentVolumeClaim:
+            claimName: ${CATALOGUE_APP_NAME}-data
+      restartPolicy: Always
+---
+

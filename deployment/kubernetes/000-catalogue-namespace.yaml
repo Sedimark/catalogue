@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ${CATALOGUE_NAMESPACE}
+  labels:
+    name: ${CATALOGUE_NAMESPACE}
+---
+
