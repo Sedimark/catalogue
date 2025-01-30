@@ -4,7 +4,7 @@ metadata:
   name: ${CATALOGUE_APP_NAME}-data
   namespace: ${CATALOGUE_NAMESPACE}
 spec:
-  storageClassName: nfs-storageclass
+  storageClassName: ${STORAGE_CLASS}
   accessModes:
     - ReadWriteOnce
   resources:
