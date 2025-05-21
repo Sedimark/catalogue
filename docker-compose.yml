@@ -1,0 +1,15 @@
+version: '3'
+services:
+  catalogue-server:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: sedimark/catalogue-server:1.0
+    ports:
+      - "3030:3030"
+    volumes:
+      - ./data:/data
+    environment:
+      - SERVER_PORT=3030
+      - STORAGE_TYPE=memory
+      - LOAD_EXAMPLES=false

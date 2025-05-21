@@ -1,0 +1,490 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sedimark: <https://w3id.org/sedimark/ontology#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix schema: <https://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+# Document-level checks to ensure required instances exist
+sedimark:DocumentRequirementsShape
+    a sh:NodeShape ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:select """
+        PREFIX sedimark: <https://w3id.org/sedimark/ontology#>
+            SELECT DISTINCT ?this WHERE { ?this ?p ?o }
+            LIMIT 1
+        """ ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "At least one sedimark:Offering instance must exist" ;
+        sh:select """
+        PREFIX sedimark: <https://w3id.org/sedimark/ontology#>
+            SELECT $this
+            WHERE {
+                FILTER NOT EXISTS { ?offering a sedimark:Offering }
+            }
+        """
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "At least one sedimark:Participant instance must exist" ;
+        sh:select """
+        PREFIX sedimark: <https://w3id.org/sedimark/ontology#>
+            SELECT $this
+            WHERE {
+                FILTER NOT EXISTS { ?participant a sedimark:Participant }
+            }
+        """
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "At least one sedimark:OfferingContract instance must exist" ;
+        sh:select """
+        PREFIX sedimark: <https://w3id.org/sedimark/ontology#>
+            SELECT $this
+            WHERE {
+                FILTER NOT EXISTS { ?contract a sedimark:OfferingContract }
+            }
+        """
+    ] .
+
+# Offering shape
+sedimark:OfferingShape
+    a sh:NodeShape ;
+    sh:targetClass sedimark:Offering ;
+    
+    # Title property
+    sh:property [
+        sh:path dcterms:title ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Offering must have exactly one dcterms:title with xsd:string value" ;
+    ] ;
+    
+    # Description property
+    sh:property [
+        sh:path dcterms:description ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Offering must have exactly one dcterms:description with xsd:string value" ;
+    ] ;
+    
+    # Theme taxonomy property
+    sh:property [
+        sh:path dcat:themeTaxonomy ;
+        sh:class skos:ConceptScheme ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "sedimark:Offering must have at least one dcat:themeTaxonomy with skos:ConceptScheme value" ;
+    ] ;
+    
+    # hasAsset property
+    sh:property [
+        sh:path sedimark:hasAsset ;
+        sh:class sedimark:Asset ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "sedimark:Offering must have at least one sedimark:hasAsset with sedimark:Asset value" ;
+    ] ;
+    
+    # isListedBy property
+    sh:property [
+        sh:path sedimark:isListedBy ;
+        sh:class sedimark:Self-Listing ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "sedimark:Offering must have exactly one sedimark:isListedBy with sedimark:Self-Listing value" ;
+    ] ;
+    
+    # hasOfferingContract property
+    sh:property [
+        sh:path sedimark:hasOfferingContract ;
+        sh:class sedimark:OfferingContract ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "sedimark:Offering must have at least one sedimark:hasOfferingContract with sedimark:OfferingContract value" ;
+    ] ;
+    
+    # License property
+    sh:property [
+        sh:path dcterms:license ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Offering must have exactly one dcterms:license with xsd:string value" ;
+    ] .
+
+# Asset shape
+sedimark:AssetShape
+    a sh:NodeShape ;
+    sh:targetClass sedimark:Asset ;
+    
+    # offeredBy property
+    sh:property [
+        sh:path sedimark:offeredBy ;
+        sh:class sedimark:Offering ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "sedimark:Asset must have at least one sedimark:offeredBy with sedimark:Offering value" ;
+    ] ;
+    
+    # isProvidedBy property
+    sh:property [
+        sh:path sedimark:isProvidedBy ;
+        sh:class sedimark:AssetProvision ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "sedimark:Asset must have at least one sedimark:isProvidedBy with sedimark:AssetProvision value" ;
+    ] ;
+    
+    # hasAssetQuality property
+    sh:property [
+        sh:path sedimark:hasAssetQuality ;
+        sh:class sedimark:AssetQuality ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "sedimark:Asset must have at least one sedimark:hasAssetQuality with sedimark:AssetQuality value" ;
+    ] ;
+    
+    # Theme property
+    sh:property [
+        sh:path dcat:theme ;
+        sh:class skos:Concept ;
+        sh:minCount 1 ;
+        sh:message "sedimark:Asset must have at least one dcat:theme with skos:Concept value" ;
+    ] ;
+    
+    # Identifier property
+    sh:property [
+        sh:path dcterms:identifier ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Asset must have exactly one dcterms:identifier with xsd:string value" ;
+    ] ;
+    
+    # Title property
+    sh:property [
+        sh:path dcterms:title ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Asset must have exactly one dcterms:title with xsd:string value" ;
+    ] ;
+    
+    # Description property
+    sh:property [
+        sh:path dcterms:description ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Asset must have exactly one dcterms:description with xsd:string value" ;
+    ] ;
+    
+    # Creator property
+    sh:property [
+        sh:path dcterms:creator ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Asset must have exactly one dcterms:creator with xsd:string value" ;
+    ] ;
+    
+    # Issued property
+    sh:property [
+        sh:path dcterms:issued ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Asset must have exactly one dcterms:issued with xsd:dateTime value" ;
+    ] ;
+    
+    # Keyword property
+    sh:property [
+        sh:path dcat:keyword ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "sedimark:Asset must have at least one dcat:keyword with xsd:string value" ;
+    ] ;
+    
+    # Spatial property
+    sh:property [
+        sh:path dcterms:spatial ;
+        sh:datatype xsd:anyURI ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Asset must have exactly one dcterms:spatial with xsd:anyURI value" ;
+    ] ;
+    
+    # Optional generatedBy property
+    sh:property [
+        sh:path prov:generatedBy ;
+        sh:datatype xsd:dateTime ;
+        sh:message "sedimark:Asset can have prov:generatedBy properties with xsd:dateTime values" ;
+    ] ;
+    
+    # Optional isVersionOf property
+    sh:property [
+        sh:path dcat:isVersionOf ;
+        sh:datatype xsd:dateTime ;
+        sh:message "sedimark:Asset can have dcat:isVersionOf properties with xsd:dateTime values" ;
+    ] .
+
+# Self-Listing shape
+sedimark:SelfListingShape
+    a sh:NodeShape ;
+    sh:targetClass sedimark:Self-Listing ;
+    
+    # belongsTo property
+    sh:property [
+        sh:path sedimark:belongsTo ;
+        sh:class sedimark:Participant ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "sedimark:Self-Listing must have exactly one sedimark:belongsTo with sedimark:Participant value" ;
+    ] ;
+    
+    # Title property
+    sh:property [
+        sh:path dcterms:title ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Self-Listing must have exactly one dcterms:title with xsd:string value" ;
+    ] ;
+    
+    # Description property
+    sh:property [
+        sh:path dcterms:description ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Self-Listing must have exactly one dcterms:description with xsd:string value" ;
+    ] ;
+    
+    # Issued property
+    sh:property [
+        sh:path dcterms:issued ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Self-Listing must have exactly one dcterms:issued with xsd:dateTime value" ;
+    ] ;
+    
+    # Modified property
+    sh:property [
+        sh:path dcterms:modified ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Self-Listing must have exactly one dcterms:modified with xsd:dateTime value" ;
+    ] ;
+    
+    # Landing page property
+    sh:property [
+        sh:path dcat:landingPage ;
+        sh:class foaf:Document ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Self-Listing must have exactly one dcat:landingPage with foaf:Document value" ;
+    ] .
+
+# Participant shape
+sedimark:ParticipantShape
+    a sh:NodeShape ;
+    sh:targetClass sedimark:Participant ;
+    
+    # accountId property
+    sh:property [
+        sh:path schema:accountId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Participant must have exactly one schema:accountId with xsd:string value" ;
+    ] ;
+    
+    # email property
+    sh:property [
+        sh:path schema:email ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "sedimark:Participant must have exactly one schema:email with rdf:Resource value" ;
+    ] .
+
+# OfferingContract shape
+sedimark:OfferingContractShape
+    a sh:NodeShape ;
+    sh:targetClass sedimark:OfferingContract ;
+    
+    # permission property
+    sh:property [
+        sh:path odrl:permission ;
+        sh:minCount 1 ;
+        sh:message "sedimark:OfferingContract must have at least one odrl:permission" ;
+    ] ;
+    
+    # duty property
+    sh:property [
+        sh:path odrl:duty ;
+        sh:minCount 1 ;
+        sh:message "sedimark:OfferingContract must have at least one odrl:duty" ;
+    ] ;
+    
+    # obligation property
+    sh:property [
+        sh:path odrl:obligation ;
+        sh:minCount 1 ;
+        sh:message "sedimark:OfferingContract must have at least one odrl:obligation" ;
+    ] .
+
+# AssetProvision shape - validate that for each Asset there's at least one AssetProvision
+sedimark:AssetProvisionRequirementShape
+    a sh:NodeShape ;
+    sh:targetClass sedimark:Asset ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Each sedimark:Asset must have at least one sedimark:AssetProvision instance" ;
+        sh:select """
+        PREFIX sedimark: <https://w3id.org/sedimark/ontology#>
+            SELECT $this
+            WHERE {
+                $this a sedimark:Asset .
+                FILTER NOT EXISTS {
+                    $this sedimark:isProvidedBy ?provision .
+                    ?provision a sedimark:AssetProvision .
+                }
+            }
+        """
+    ] .
+
+# Validate that referenced instances exist
+sedimark:InstanceExistenceShape
+    a sh:NodeShape ;
+    
+    # Check if referenced Offering instances exist
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Referenced sedimark:Offering must exist in the document" ;
+        sh:select """
+        PREFIX sedimark: <https://w3id.org/sedimark/ontology#>
+            SELECT ?this ?value
+            WHERE {
+                { ?this sedimark:offeredBy ?value } 
+                FILTER NOT EXISTS { ?value a sedimark:Offering }
+            }
+        """
+    ] ;
+    
+    # Check if referenced Asset instances exist
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Referenced sedimark:Asset must exist in the document" ;
+        sh:select """
+        PREFIX sedimark: <https://w3id.org/sedimark/ontology#>
+            SELECT ?this ?value
+            WHERE {
+                { ?this sedimark:hasAsset ?value }
+                FILTER NOT EXISTS { ?value a sedimark:Asset }
+            }
+        """
+    ] ;
+    
+    # Check if referenced Self-Listing instances exist
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Referenced sedimark:Self-Listing must exist in the document" ;
+        sh:select """
+        PREFIX sedimark: <https://w3id.org/sedimark/ontology#>
+            SELECT ?this ?value
+            WHERE {
+                { ?this sedimark:isListedBy ?value }
+                FILTER NOT EXISTS { ?value a sedimark:Self-Listing }
+            }
+        """
+    ] ;
+    
+    # Check if referenced AssetProvision instances exist
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Referenced sedimark:AssetProvision must exist in the document" ;
+        sh:select """
+        PREFIX sedimark: <https://w3id.org/sedimark/ontology#>
+            SELECT ?this ?value
+            WHERE {
+                { ?this sedimark:isProvidedBy ?value }
+                FILTER NOT EXISTS { ?value a sedimark:AssetProvision }
+            }
+        """
+    ] ;
+    
+    # Check if referenced AssetQuality instances exist
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Referenced sedimark:AssetQuality must exist in the document" ;
+        sh:select """
+        PREFIX sedimark: <https://w3id.org/sedimark/ontology#>
+            SELECT ?this ?value
+            WHERE {
+                { ?this sedimark:hasAssetQuality ?value }
+                FILTER NOT EXISTS { ?value a sedimark:AssetQuality }
+            }
+        """
+    ] ;
+    
+    # Check if referenced OfferingContract instances exist
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Referenced sedimark:OfferingContract must exist in the document" ;
+        sh:select """
+        PREFIX sedimark: <https://w3id.org/sedimark/ontology#>
+            SELECT ?this ?value
+            WHERE {
+                { ?this sedimark:hasOfferingContract ?value }
+                FILTER NOT EXISTS { ?value a sedimark:OfferingContract }
+            }
+        """
+    ] ;
+    
+    # Check if referenced Participant instances exist
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Referenced sedimark:Participant must exist in the document" ;
+        sh:select """
+        PREFIX sedimark: <https://w3id.org/sedimark/ontology#>
+            SELECT ?this ?value
+            WHERE {
+                { ?this sedimark:belongsTo ?value }
+                FILTER NOT EXISTS { ?value a sedimark:Participant }
+            }
+        """
+    ] ;
+    
+    # Check if referenced ConceptScheme instances exist
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Referenced skos:ConceptScheme must exist in the document" ;
+        sh:select """
+        PREFIX sedimark: <https://w3id.org/sedimark/ontology#>
+        PREFIX dcat: <http://www.w3.org/ns/dcat#>
+        PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+            SELECT ?this ?value
+            WHERE {
+                { ?this dcat:themeTaxonomy ?value }
+                FILTER NOT EXISTS { ?value a skos:ConceptScheme }
+            }
+        """
+    ] .

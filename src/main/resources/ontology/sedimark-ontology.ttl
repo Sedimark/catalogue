@@ -1,0 +1,1648 @@
+@prefix : <https://w3id.org/sedimark/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://w3id.org/sedimark/ontology#> .
+
+<https://w3id.org/sedimark/ontology> rdf:type owl:Ontology ;
+                                      <http://purl.org/dc/elements/1.1/description> """The Marketplace Information Model is an RDFS/OWL-ontology covering the fundamental concepts of SEDIMARK needed for the registration of participants and the discovery and exchange of offerings and assets. This model establishes a common framework to ensure interoperability within a SEDIMARK-based Marketplace.
+
+This model is supported by existing proposals by similar initiatives and is built upon well-known ontologies such as Data Catalog vocabulary (DCAT), Open Digital Rights Language (ODRL), Friend Of A Friend (FOAF) or the Dublin Core Terms (DCT). In particular, the model has its foundations in the proposal shared by the International Data Spaces Protocol, to try to be compatible as much compatible as possible with such an initiative.""" ;
+                                      <http://purl.org/dc/elements/1.1/title> "SEDIMARK Marketplace Information Model" ;
+                                      <http://purl.org/dc/terms/contributor> "Maroua Bahri (INRIA)" ;
+                                      <http://purl.org/dc/terms/creator> "Jorge Lanza (Universidad de Cantabria)" ,
+                                                                         "Juan Ramon Santana (Universidad de Cantabria)" ,
+                                                                         "Luis Sanchez (Universidad de Cantabria)" ,
+                                                                         "Pablo Sotres (Universidad de Cantabria)" ,
+                                                                         "Tarek Elsaleh (University of Surrey)" ;
+                                      <http://purl.org/dc/terms/issued> "2023-12-31" ;
+                                      <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0> ;
+                                      <http://purl.org/dc/terms/modified> "2025-04-01"^^xsd:date ;
+                                      <http://purl.org/ontology/bibo/status> "Working Draft" ;
+                                      <http://purl.org/vocab/vann/preferredNamespacePrefix> "sedimark" ;
+                                      <http://purl.org/vocommons/voaf#extends> "http://www.w3.org/ns/dcat#"^^xsd:anyURI ,
+                                                                               "http://www.w3.org/ns/dqv#"^^xsd:anyURI ,
+                                                                               "http://www.w3.org/ns/odrl/2/"^^xsd:anyURI ;
+                                      <http://schema.org/citation> "SEDIMARK Marketplace Information Model - SEDIMARK EU Project" ;
+                                      <http://schema.org/codeRepository> "https://github.com/Sedimark/ontology"^^xsd:anyURI ;
+                                      <http://schema.org/funding> "https://cordis.europa.eu/project/id/101070074"^^xsd:anyURI ,
+                                                                  "https://gtr.ukri.org/projects?ref=10043699"^^xsd:anyURI ;
+                                      <http://schema.org/image> "https://github.com/Sedimark/ontology/tree/main/images/sedimark-ontology.png"^^xsd:anyURI ;
+                                      <http://schema.org/logo> <https://sedimark.eu/wp-content/uploads/2023/11/sedimark_logo_512x512.png> ;
+                                      <http://schema.org/url> "https://sedimark.eu/"^^xsd:anyURI ;
+                                      rdfs:label "SEDIMARK Ontology" ;
+                                      owl:versionInfo 0.7 .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/description
+<http://purl.org/dc/elements/1.1/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/rights
+<http://purl.org/dc/elements/1.1/rights> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+<http://purl.org/dc/terms/issued> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty ;
+                                   rdfs:subPropertyOf <http://purl.org/dc/elements/1.1/rights> .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/publisher
+<http://purl.org/dc/terms/publisher> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/ontology/bibo/status
+<http://purl.org/ontology/bibo/status> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/usageNote
+<http://purl.org/vocab/vann/usageNote> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocommons/voaf#extends
+<http://purl.org/vocommons/voaf#extends> rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/citation
+<http://schema.org/citation> rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/codeRepository
+<http://schema.org/codeRepository> rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/funding
+<http://schema.org/funding> rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/image
+<http://schema.org/image> rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/logo
+<http://schema.org/logo> rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/rangeIncludes
+<http://schema.org/rangeIncludes> rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/url
+<http://schema.org/url> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2003/06/sw-vocab-status/ns#term_status
+<http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#altLabel
+<http://www.w3.org/2004/02/skos/core#altLabel> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#changeNote
+<http://www.w3.org/2004/02/skos/core#changeNote> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+<http://www.w3.org/2004/02/skos/core#definition> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#editorialNote
+<http://www.w3.org/2004/02/skos/core#editorialNote> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#example
+<http://www.w3.org/2004/02/skos/core#example> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#note
+<http://www.w3.org/2004/02/skos/core#note> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#scopeNote
+<http://www.w3.org/2004/02/skos/core#scopeNote> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/accountId
+<https://schema.org/accountId> rdf:type owl:AnnotationProperty ;
+                               rdfs:comment "The identifier for the account the payment will be applied to." ;
+                               rdfs:label "accountId" ;
+                               <https://schema.org/domainIncludes> <https://schema.org/Invoice> ;
+                               <https://schema.org/rangeIncludes> <https://schema.org/Text> ;
+                               rdfs:subPropertyOf <https://schema.org/identifier> .
+
+
+###  https://schema.org/affiliation
+<https://schema.org/affiliation> rdf:type owl:AnnotationProperty ;
+                                 rdfs:comment "An organization that this person is affiliated with. For example, a school/university, a club, or a team." ;
+                                 rdfs:label "affiliation" ;
+                                 <https://schema.org/domainIncludes> <https://schema.org/Person> ;
+                                 <https://schema.org/rangeIncludes> <https://schema.org/Organization> ;
+                                 rdfs:subPropertyOf <https://schema.org/memberOf> .
+
+
+###  https://schema.org/domainIncludes
+<https://schema.org/domainIncludes> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/email
+<https://schema.org/email> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/familyName
+<https://schema.org/familyName> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/givenName
+<https://schema.org/givenName> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/identifier
+<https://schema.org/identifier> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/image
+<https://schema.org/image> rdf:type owl:AnnotationProperty ;
+                           rdfs:comment "An image of the item. This can be a [[URL]] or a fully described [[ImageObject]]." ;
+                           rdfs:label "image" ;
+                           <https://schema.org/domainIncludes> <https://schema.org/Thing> ;
+                           <https://schema.org/rangeIncludes> <https://schema.org/ImageObject> ,
+                                                              <https://schema.org/URL> .
+
+
+###  https://schema.org/inverseOf
+<https://schema.org/inverseOf> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/logo
+<https://schema.org/logo> rdf:type owl:AnnotationProperty ;
+                          rdfs:comment "An associated logo." ;
+                          rdfs:label "logo" ;
+                          <https://schema.org/domainIncludes> <https://schema.org/Brand> ,
+                                                              <https://schema.org/Certification> ,
+                                                              <https://schema.org/Organization> ,
+                                                              <https://schema.org/Place> ,
+                                                              <https://schema.org/Product> ,
+                                                              <https://schema.org/Service> ;
+                          <https://schema.org/rangeIncludes> <https://schema.org/ImageObject> ,
+                                                             <https://schema.org/URL> ;
+                          rdfs:subPropertyOf <https://schema.org/image> .
+
+
+###  https://schema.org/memberOf
+<https://schema.org/memberOf> rdf:type owl:AnnotationProperty ;
+                              rdfs:comment "An Organization (or ProgramMembership) to which this Person or Organization belongs." ;
+                              rdfs:label "memberOf" ;
+                              <https://schema.org/domainIncludes> <https://schema.org/Organization> ,
+                                                                  <https://schema.org/Person> ;
+                              <https://schema.org/inverseOf> <https://schema.org/member> ;
+                              <https://schema.org/rangeIncludes> <https://schema.org/Organization> ,
+                                                                 <https://schema.org/ProgramMembership> .
+
+
+###  https://schema.org/photo
+<https://schema.org/photo> rdf:type owl:AnnotationProperty ;
+                           rdfs:comment "A photograph of this place." ;
+                           rdfs:label "photo" ;
+                           <https://schema.org/domainIncludes> <https://schema.org/Place> ;
+                           <https://schema.org/rangeIncludes> <https://schema.org/ImageObject> ,
+                                                              <https://schema.org/Photograph> ;
+                           rdfs:subPropertyOf <https://schema.org/image> .
+
+
+###  https://schema.org/rangeIncludes
+<https://schema.org/rangeIncludes> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2001/XMLSchema#duration
+xsd:duration rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/eis/vocab/daq#hasDimension
+<http://purl.org/eis/vocab/daq#hasDimension> rdf:type owl:ObjectProperty ;
+                                             owl:inverseOf <http://www.w3.org/ns/dqv#inCategory> .
+
+
+###  http://www.w3.org/2004/02/skos/core#broader
+<http://www.w3.org/2004/02/skos/core#broader> rdf:type owl:ObjectProperty ;
+                                              rdfs:subPropertyOf <http://www.w3.org/2004/02/skos/core#broaderTransitive> ;
+                                              owl:inverseOf <http://www.w3.org/2004/02/skos/core#narrower> ;
+                                              rdfs:comment "Broader concepts are typically rendered as parents in a concept hierarchy (tree)."@en ;
+                                              rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> ;
+                                              rdfs:label "has broader"@en ;
+                                              <http://www.w3.org/2004/02/skos/core#definition> "Relates a concept to a concept that is more general in meaning."@en ;
+                                              <http://www.w3.org/2004/02/skos/core#scopeNote> "By convention, skos:broader is only used to assert an immediate (i.e. direct) hierarchical link between two conceptual resources."@en .
+
+
+###  http://www.w3.org/2004/02/skos/core#broaderTransitive
+<http://www.w3.org/2004/02/skos/core#broaderTransitive> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#hasTopConcept
+<http://www.w3.org/2004/02/skos/core#hasTopConcept> rdf:type owl:ObjectProperty ;
+                                                    owl:inverseOf <http://www.w3.org/2004/02/skos/core#topConceptOf> ;
+                                                    rdfs:domain <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
+                                                    rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                    rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> ;
+                                                    rdfs:label "has top concept"@en ;
+                                                    <http://www.w3.org/2004/02/skos/core#definition> "Relates, by convention, a concept scheme to a concept which is topmost in the broader/narrower concept hierarchies for that scheme, providing an entry point to these hierarchies."@en .
+
+
+###  http://www.w3.org/2004/02/skos/core#inScheme
+<http://www.w3.org/2004/02/skos/core#inScheme> rdf:type owl:ObjectProperty ;
+                                               rdfs:range <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
+                                               rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> ;
+                                               rdfs:label "is in scheme"@en ;
+                                               <http://www.w3.org/2004/02/skos/core#definition> "Relates a resource (for example a concept) to a concept scheme in which it is included."@en ;
+                                               <http://www.w3.org/2004/02/skos/core#scopeNote> "A concept may be a member of more than one concept scheme."@en .
+
+
+###  http://www.w3.org/2004/02/skos/core#member
+<http://www.w3.org/2004/02/skos/core#member> rdf:type owl:ObjectProperty ;
+                                             rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> ;
+                                             rdfs:label "has member"@en ;
+                                             <http://www.w3.org/2004/02/skos/core#definition> "Relates a collection to one of its members."@en .
+
+
+###  http://www.w3.org/2004/02/skos/core#narrower
+<http://www.w3.org/2004/02/skos/core#narrower> rdf:type owl:ObjectProperty ;
+                                               rdfs:subPropertyOf <http://www.w3.org/2004/02/skos/core#narrowerTransitive> ;
+                                               rdfs:comment "Narrower concepts are typically rendered as children in a concept hierarchy (tree)."@en ;
+                                               rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> ;
+                                               rdfs:label "has narrower"@en ;
+                                               <http://www.w3.org/2004/02/skos/core#definition> "Relates a concept to a concept that is more specific in meaning."@en ;
+                                               <http://www.w3.org/2004/02/skos/core#scopeNote> "By convention, skos:broader is only used to assert an immediate (i.e. direct) hierarchical link between two conceptual resources."@en .
+
+
+###  http://www.w3.org/2004/02/skos/core#narrowerTransitive
+<http://www.w3.org/2004/02/skos/core#narrowerTransitive> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#related
+<http://www.w3.org/2004/02/skos/core#related> rdf:type owl:ObjectProperty ;
+                                              rdfs:subPropertyOf <http://www.w3.org/2004/02/skos/core#semanticRelation> ;
+                                              rdf:type owl:SymmetricProperty ;
+                                              rdfs:comment "skos:related is disjoint with skos:broaderTransitive"@en ;
+                                              rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> ;
+                                              rdfs:label "has related"@en ;
+                                              <http://www.w3.org/2004/02/skos/core#definition> "Relates a concept to a concept with which there is an associative semantic relationship."@en .
+
+
+###  http://www.w3.org/2004/02/skos/core#semanticRelation
+<http://www.w3.org/2004/02/skos/core#semanticRelation> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#topConceptOf
+<http://www.w3.org/2004/02/skos/core#topConceptOf> rdf:type owl:ObjectProperty ;
+                                                   rdfs:subPropertyOf <http://www.w3.org/2004/02/skos/core#inScheme> ;
+                                                   rdfs:domain <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                   rdfs:range <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
+                                                   rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> ;
+                                                   rdfs:label "is top concept in scheme"@en ;
+                                                   <http://www.w3.org/2004/02/skos/core#definition> "Relates a concept to the concept scheme that it is a top level concept of."@en .
+
+
+###  http://www.w3.org/ns/dcat#record
+<http://www.w3.org/ns/dcat#record> rdf:type owl:ObjectProperty ;
+                                   rdfs:range <http://www.w3.org/ns/dcat#CatalogRecord> .
+
+
+###  http://www.w3.org/ns/dcat#theme
+<http://www.w3.org/ns/dcat#theme> rdf:type owl:ObjectProperty ;
+                                  rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                  rdfs:comment "A main category of the resource. A resource can have multiple themes."@en ,
+                                               "Et centralt emne for ressourcen. En ressource kan have flere centrale emner."@da ,
+                                               "Hlavní téma zdroje. Zdroj může mít více témat."@cs ,
+                                               "La categoria principale della risorsa. Una risorsa può avere più temi."@it ,
+                                               "La categoría principal del recurso. Un recurso puede tener varios temas."@es ,
+                                               "La catégorie principale de la ressource. Une ressource peut avoir plusieurs thèmes."@fr ,
+                                               "Η κύρια κατηγορία του συνόλου δεδομένων. Ένα σύνολο δεδομένων δύναται να έχει πολλαπλά θέματα."@el ,
+                                               "التصنيف الرئيسي لقائمة البيانات. قائمة البيانات يمكن أن تملك أكثر من تصنيف رئيسي واحد."@ar ,
+                                               "データセットの主要カテゴリー。データセットは複数のテーマを持つことができます。"@ja ;
+                                  rdfs:isDefinedBy <http://www.w3.org/TR/vocab-dcat/> ;
+                                  rdfs:label "emne"@da ,
+                                             "tema"@es ,
+                                             "tema"@it ,
+                                             "theme"@en ,
+                                             "thème"@fr ,
+                                             "téma"@cs ,
+                                             "Θέμα"@el ,
+                                             "التصنيف"@ar ,
+                                             "テーマ/カテゴリー"@ja ;
+                                  <http://www.w3.org/2004/02/skos/core#altLabel> "tema"@da ;
+                                  <http://www.w3.org/2004/02/skos/core#definition> "A main category of the resource. A resource can have multiple themes."@en ,
+                                                                                   "Et centralt emne for ressourcen. En ressource kan have flere centrale emner."@da ,
+                                                                                   "Hlavní téma zdroje. Zdroj může mít více témat."@cs ,
+                                                                                   "La categoria principale della risorsa. Una risorsa può avere più temi."@it ,
+                                                                                   "La categoría principal del recurso. Un recurso puede tener varios temas."@es ,
+                                                                                   "La catégorie principale de la ressource. Une ressource peut avoir plusieurs thèmes."@fr ,
+                                                                                   "Η κύρια κατηγορία του συνόλου δεδομένων. Ένα σύνολο δεδομένων δύναται να έχει πολλαπλά θέματα."@el ,
+                                                                                   "التصنيف الرئيسي لقائمة البيانات. قائمة البيانات يمكن أن تملك أكثر من تصنيف رئيسي واحد."@ar ,
+                                                                                   "データセットの主要カテゴリー。データセットは複数のテーマを持つことができます。"@ja ;
+                                  <http://www.w3.org/2004/02/skos/core#editorialNote> "Status: English Definition text modified by DCAT revision team, all except for Italian and Czech translations are pending."@en ;
+                                  <http://www.w3.org/2004/02/skos/core#scopeNote> "El conjunto de skos:Concepts utilizados para categorizar los recursos están organizados en un skos:ConceptScheme que describe todas las categorías y sus relaciones en el catálogo."@es ,
+                                                                                  "Il set di concetti skos usati per categorizzare le risorse sono organizzati in skos:ConceptScheme che descrive tutte le categorie e le loro relazioni nel catalogo."@it ,
+                                                                                  "Sada instancí třídy skos:Concept použitá pro kategorizaci zdrojů je organizována do schématu konceptů skos:ConceptScheme, které popisuje všechny kategorie v katalogu a jejich vztahy."@cs ,
+                                                                                  "Samlingen af begreber (skos:Concept) der anvendes til at emneinddele ressourcer organiseres i et begrebssystem (skos:ConceptScheme) som beskriver alle emnerne og deres relationer i kataloget."@da ,
+                                                                                  "The set of skos:Concepts used to categorize the resources are organized in a skos:ConceptScheme describing all the categories and their relations in the catalog."@en ,
+                                                                                  "Un ensemble de skos:Concepts utilisés pour catégoriser les ressources sont organisés en un skos:ConceptScheme décrivant toutes les catégories et ses relations dans le catalogue."@fr ,
+                                                                                  "Το σετ των skos:Concepts που χρησιμοποιείται για να κατηγοριοποιήσει τα σύνολα δεδομένων είναι οργανωμένο εντός ενός skos:ConceptScheme που περιγράφει όλες τις κατηγορίες και τις σχέσεις αυτών στον κατάλογο."@el ,
+                                                                                  "データセットを分類するために用いられるskos:Conceptの集合は、カタログのすべてのカテゴリーとそれらの関係を記述しているskos:ConceptSchemeで組織化されます。"@ja .
+
+
+###  http://www.w3.org/ns/dcat#themeTaxonomy
+<http://www.w3.org/ns/dcat#themeTaxonomy> rdf:type owl:ObjectProperty ;
+                                          rdfs:domain <http://www.w3.org/ns/dcat#Catalog> ;
+                                          rdfs:range rdfs:Resource ;
+                                          <http://schema.org/rangeIncludes> owl:Ontology ,
+                                                                            <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
+                                          rdfs:comment "El sistema de organización del conocimiento utilizado para clasificar conjuntos de datos de catálogos."@es ,
+                                                       "Il sistema di organizzazione della conoscenza (KOS) usato per classificare i dataset del catalogo."@it ,
+                                                       "Le systhème d'ogranisation de connaissances utilisé pour classifier les jeux de données du catalogue."@fr ,
+                                                       "Systém organizace znalostí (KOS) použitý pro klasifikaci datových sad v katalogu."@cs ,
+                                                       "The knowledge organization system (KOS) used to classify catalog's datasets."@en ,
+                                                       "Vidensorganiseringssystem (KOS) som anvendes til at klassificere datasæt i kataloget."@da ,
+                                                       "Το σύστημα οργάνωσης γνώσης που χρησιμοποιείται για την κατηγοριοποίηση των συνόλων δεδομένων του καταλόγου."@el ,
+                                                       "لائحة التصنيفات المستخدمه لتصنيف قوائم البيانات ضمن الفهرس"@ar ,
+                                                       "カタログのデータセットを分類するために用いられる知識組織化体系（KOS；knowledge organization system）。"@ja ;
+                                          rdfs:isDefinedBy <http://www.w3.org/TR/vocab-dcat/> ;
+                                          rdfs:label "emnetaksonomi"@da ,
+                                                     "tassonomia dei temi"@it ,
+                                                     "taxonomie de thèmes"@fr ,
+                                                     "taxonomie témat"@cs ,
+                                                     "taxonomía de temas"@es ,
+                                                     "theme taxonomy"@en ,
+                                                     "Ταξινομία θεματικών κατηγοριών."@el ,
+                                                     "قائمة التصنيفات"@ar ,
+                                                     "テーマ"@ja ;
+                                          <http://www.w3.org/2004/02/skos/core#altLabel> "temataksonomi"@da ;
+                                          <http://www.w3.org/2004/02/skos/core#definition> "El sistema de organización del conocimiento utilizado para clasificar conjuntos de datos de catálogos."@es ,
+                                                                                           "Il sistema di organizzazione della conoscenza (KOS) usato per classificare i dataset del catalogo."@it ,
+                                                                                           "Le systhème d'ogranisation de connaissances utilisé pour classifier les jeux de données du catalogue."@fr ,
+                                                                                           "Systém organizace znalostí (KOS) použitý pro klasifikaci datových sad v katalogu."@cs ,
+                                                                                           "The knowledge organization system (KOS) used to classify catalog's datasets."@en ,
+                                                                                           "Vidensorganiseringssystem (KOS) som anvendes til at klassificere datasæt i kataloget."@da ,
+                                                                                           "Το σύστημα οργάνωσης γνώσης που χρησιμοποιείται για την κατηγοριοποίηση των συνόλων δεδομένων του καταλόγου."@el ,
+                                                                                           "لائحة التصنيفات المستخدمه لتصنيف قوائم البيانات ضمن الفهرس"@ar ,
+                                                                                           "カタログのデータセットを分類するために用いられる知識組織化体系（KOS；knowledge organization system）。"@ja ;
+                                          <http://www.w3.org/2004/02/skos/core#scopeNote> "Det anbefales at taksonomien organiseres i et skos:ConceptScheme, skos:Collection, owl:Ontology eller lignende, som giver mulighed for at ethvert medlem af taksonomien kan forsynes med en IRI og udgives som linked-data."@da ,
+                                                                                          "It is recommended that the taxonomy is organized in a skos:ConceptScheme, skos:Collection, owl:Ontology or similar, which allows each member to be denoted by an IRI and published as linked-data."@en ,
+                                                                                          "Je doporučeno, aby byla taxonomie vyjádřena jako skos:ConceptScheme, skos:Collection, owl:Ontology nebo podobné, aby mohla být každá položka identifikována pomocí IRI a publikována jako propojená data."@cs ,
+                                                                                          "Se recomienda que la taxonomía se organice como un skos:ConceptScheme, skos:Collection, owl:Ontology o similar, los cuáles permiten que cada miembro se denote con una IRI y se publique como datos enlazados."@es ,
+                                                                                          "Si raccomanda che la tassonomia sia organizzata in uno skos:ConceptScheme, skos:Collection, owl:Ontology o simili, che permette ad ogni membro di essere indicato da un IRI e pubblicato come linked-data."@it .
+
+
+###  http://www.w3.org/ns/dqv#computedOn
+<http://www.w3.org/ns/dqv#computedOn> rdf:type owl:ObjectProperty ;
+                                      owl:inverseOf <http://www.w3.org/ns/dqv#hasQualityMeasurement> ;
+                                      rdfs:domain <http://www.w3.org/ns/dqv#QualityMeasurement> ;
+                                      rdfs:range rdfs:Resource ;
+                                      rdfs:comment "Refers to the resource (e.g., a dataset, a linkset, a graph, a set of triples) on which the quality measurement is performed. In the DQV context, this property is generally expected to be used in statements in which objects are instances of dcat:Dataset or dcat:Distribution."@en ;
+                                      rdfs:label "computed on"@en .
+
+
+###  http://www.w3.org/ns/dqv#hasQualityMeasurement
+<http://www.w3.org/ns/dqv#hasQualityMeasurement> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/dqv#inCategory
+<http://www.w3.org/ns/dqv#inCategory> rdf:type owl:ObjectProperty ;
+                                      rdfs:domain <http://www.w3.org/ns/dqv#Dimension> ;
+                                      rdfs:range <http://www.w3.org/ns/dqv#Category> ;
+                                      <http://purl.org/vocab/vann/usageNote> "Categories are meant to systematically organize dimensions. The Data Quality Vocabulary defines no specific cardinality constraints for dqv:inCategory, since distinct quality frameworks might have different perspectives over a dimension. A dimension may therefore be associated to more than one category. However, those who define new quality metrics should try to avoid this as much as possible and assign only one category to the dimensions they define."@en ;
+                                      rdfs:comment "Represents the category a dimension is grouped in."@en ;
+                                      rdfs:label "in category"@en .
+
+
+###  http://www.w3.org/ns/dqv#inDimension
+<http://www.w3.org/ns/dqv#inDimension> rdf:type owl:ObjectProperty ;
+                                       rdfs:range <http://www.w3.org/ns/dqv#Dimension> ;
+                                       <http://purl.org/vocab/vann/usageNote> "Dimensions are meant to systematically organize metrics, quality certificates and quality annotations. The Data Quality Vocabulary defines no specific cardinality constraints for dqv:inDimension, since distinct quality frameworks might have different perspectives over a metric. A metric may therefore be associated to more than one dimension. However, those who define new quality metrics should try to avoid this as much as possible and assign only one dimension to the metrics they define. More than one dimension can be indicated for each quality annotation or certificate."@en ;
+                                       rdfs:comment "Represents the dimensions a quality metric, certificate and annotation allow a measurement of."@en ;
+                                       rdfs:label "in dimension"@en .
+
+
+###  http://www.w3.org/ns/dqv#isMeasurementOf
+<http://www.w3.org/ns/dqv#isMeasurementOf> rdf:type owl:ObjectProperty ;
+                                           rdfs:domain <http://purl.org/linked-data/cube#Observation> ;
+                                           rdfs:range <http://www.w3.org/ns/dqv#Metric> ;
+                                           rdfs:comment "Indicates the metric being observed."@en ;
+                                           rdfs:label "is measurement of"@en .
+
+
+###  http://www.w3.org/ns/odrl/2/assigneeOf
+<http://www.w3.org/ns/odrl/2/assigneeOf> rdf:type owl:ObjectProperty ;
+                                         rdfs:domain <http://www.w3.org/ns/odrl/2/Party> ;
+                                         rdfs:range <http://www.w3.org/ns/odrl/2/Policy> ;
+                                         rdfs:isDefinedBy <http://www.w3.org/ns/odrl/2/> ;
+                                         rdfs:label "Assignee Of"@en ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Identifies an ODRL Policy for which the identified Party undertakes the assignee functional role."@en ;
+                                         <http://www.w3.org/2004/02/skos/core#note> "When assigneeOf has been asserted between a metadata expression and an ODRL Policy, the Party being identified MUST be inferred to undertake the assignee functional role of all the Rules of that Policy."@en .
+
+
+###  http://www.w3.org/ns/odrl/2/assignerOf
+<http://www.w3.org/ns/odrl/2/assignerOf> rdf:type owl:ObjectProperty ;
+                                         rdfs:domain <http://www.w3.org/ns/odrl/2/Party> ;
+                                         rdfs:range <http://www.w3.org/ns/odrl/2/Policy> ;
+                                         rdfs:isDefinedBy <http://www.w3.org/ns/odrl/2/> ;
+                                         rdfs:label "Assigner Of"@en ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Identifies an ODRL Policy for which the identified Party undertakes the assigner functional role."@en ;
+                                         <http://www.w3.org/2004/02/skos/core#note> "When assignerOf has been asserted between a metadata expression and an ODRL Policy, the Party being identified MUST be inferred to undertake the assigner functional role of all the Rules of that Policy."@en .
+
+
+###  http://www.w3.org/ns/odrl/2/hasPolicy
+<http://www.w3.org/ns/odrl/2/hasPolicy> rdf:type owl:ObjectProperty ;
+                                        rdfs:domain <http://www.w3.org/ns/odrl/2/Asset> ;
+                                        rdfs:range <http://www.w3.org/ns/odrl/2/Policy> ;
+                                        rdfs:isDefinedBy <http://www.w3.org/ns/odrl/2/> ;
+                                        rdfs:label "Target Policy"@en ;
+                                        <http://www.w3.org/2004/02/skos/core#definition> "Identifies an ODRL Policy for which the identified Asset is the target Asset to all the Rules."@en ;
+                                        <http://www.w3.org/2004/02/skos/core#note> "The Asset being identified MUST be inferred to be the target Asset of all of the Rules of the Policy."@en .
+
+
+###  http://www.w3.org/ns/odrl/2/obligation
+<http://www.w3.org/ns/odrl/2/obligation> rdf:type owl:ObjectProperty ;
+                                         rdfs:domain <http://www.w3.org/ns/odrl/2/Policy> ;
+                                         rdfs:range <http://www.w3.org/ns/odrl/2/Duty> ;
+                                         rdfs:isDefinedBy <http://www.w3.org/ns/odrl/2/> ;
+                                         rdfs:label "Obligation"@en ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Relates an individual Duty to a Policy."@en ;
+                                         <http://www.w3.org/2004/02/skos/core#note> "The Duty is a requirement which must be fulfilled."@en .
+
+
+###  http://www.w3.org/ns/odrl/2/permission
+<http://www.w3.org/ns/odrl/2/permission> rdf:type owl:ObjectProperty ;
+                                         rdfs:domain <http://www.w3.org/ns/odrl/2/Policy> ;
+                                         rdfs:range <http://www.w3.org/ns/odrl/2/Permission> ;
+                                         rdfs:isDefinedBy <http://www.w3.org/ns/odrl/2/> ;
+                                         rdfs:label "Has Permission"@en ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Relates an individual Permission to a Policy."@en .
+
+
+###  http://www.w3.org/ns/odrl/2/prohibition
+<http://www.w3.org/ns/odrl/2/prohibition> rdf:type owl:ObjectProperty ;
+                                          rdfs:domain <http://www.w3.org/ns/odrl/2/Policy> ;
+                                          rdfs:range <http://www.w3.org/ns/odrl/2/Prohibition> ;
+                                          rdfs:isDefinedBy <http://www.w3.org/ns/odrl/2/> ;
+                                          rdfs:label "Has Prohibition"@en ;
+                                          <http://www.w3.org/2004/02/skos/core#definition> "Relates an individual Prohibition to a Policy."@en .
+
+
+###  http://www.w3.org/ns/odrl/2/relation
+<http://www.w3.org/ns/odrl/2/relation> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/odrl/2/target
+<http://www.w3.org/ns/odrl/2/target> rdf:type owl:ObjectProperty ;
+                                     rdfs:subPropertyOf <http://www.w3.org/ns/odrl/2/relation> ;
+                                     rdfs:domain [ rdf:type owl:Class ;
+                                                   owl:unionOf ( <http://www.w3.org/ns/odrl/2/Policy>
+                                                                 <http://www.w3.org/ns/odrl/2/Rule>
+                                                               )
+                                                 ] ;
+                                     rdfs:range <http://www.w3.org/ns/odrl/2/Asset> ;
+                                     rdfs:isDefinedBy <http://www.w3.org/ns/odrl/2/> ;
+                                     rdfs:label "Target"@en ;
+                                     <http://www.w3.org/2004/02/skos/core#definition> "The target property indicates the Asset that is the primary subject to which the Rule action directly applies."@en .
+
+
+###  http://xmlns.com/foaf/0.1/homepage
+<http://xmlns.com/foaf/0.1/homepage> rdf:type owl:ObjectProperty ;
+                                     rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/isPrimaryTopicOf> ,
+                                                        <http://xmlns.com/foaf/0.1/page> ;
+                                     rdf:type owl:InverseFunctionalProperty ;
+                                     rdfs:domain owl:Thing ;
+                                     rdfs:range <http://xmlns.com/foaf/0.1/Document> ;
+                                     rdfs:comment "A homepage for some thing." ,
+                                                  "This axiom needed so that Protege loads DCAT2 without errors." ;
+                                     rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                     rdfs:label "homepage" ;
+                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://xmlns.com/foaf/0.1/isPrimaryTopicOf
+<http://xmlns.com/foaf/0.1/isPrimaryTopicOf> rdf:type owl:ObjectProperty .
+
+
+###  http://xmlns.com/foaf/0.1/page
+<http://xmlns.com/foaf/0.1/page> rdf:type owl:ObjectProperty .
+
+
+###  http://xmlns.com/foaf/0.1/primaryTopic
+<http://xmlns.com/foaf/0.1/primaryTopic> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/sedimark/ontology#belongsTo
+:belongsTo rdf:type owl:ObjectProperty ;
+           owl:inverseOf :hasSelf-Listing ;
+           rdfs:domain :Self-Listing ;
+           rdfs:range :Participant .
+
+
+###  https://w3id.org/sedimark/ontology#hasAsset
+:hasAsset rdf:type owl:ObjectProperty ;
+          owl:inverseOf :offeredBy ;
+          rdfs:domain :Offering ;
+          rdfs:range :Asset .
+
+
+###  https://w3id.org/sedimark/ontology#hasAssetQuality
+:hasAssetQuality rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Asset ;
+                 rdfs:range :AssetQuality .
+
+
+###  https://w3id.org/sedimark/ontology#hasOffering
+:hasOffering rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isListedBy ;
+             rdfs:domain :Self-Listing ;
+             rdfs:range :Offering .
+
+
+###  https://w3id.org/sedimark/ontology#hasOfferingContract
+:hasOfferingContract rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Offering ;
+                     rdfs:range :OfferingContract .
+
+
+###  https://w3id.org/sedimark/ontology#hasOfferingRecord
+:hasOfferingRecord rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf <http://www.w3.org/ns/dcat#record> ;
+                   rdfs:domain :Offering ;
+                   rdfs:range :OfferingRecord .
+
+
+###  https://w3id.org/sedimark/ontology#hasSelf-Listing
+:hasSelf-Listing rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Participant ;
+                 rdfs:range :Self-Listing .
+
+
+###  https://w3id.org/sedimark/ontology#isListedBy
+:isListedBy rdf:type owl:ObjectProperty ;
+            rdfs:domain :Offering ;
+            rdfs:range :Self-Listing .
+
+
+###  https://w3id.org/sedimark/ontology#isProvidedBy
+:isProvidedBy rdf:type owl:ObjectProperty ;
+              rdfs:domain :Asset ;
+              rdfs:range :AssetProvision .
+
+
+###  https://w3id.org/sedimark/ontology#isReferencedBy
+:isReferencedBy rdf:type owl:ObjectProperty ;
+                owl:inverseOf :references ;
+                rdfs:domain :Offering ;
+                rdfs:range :Agreement .
+
+
+###  https://w3id.org/sedimark/ontology#offeredBy
+:offeredBy rdf:type owl:ObjectProperty ;
+           rdfs:domain :Asset ;
+           rdfs:range :Offering .
+
+
+###  https://w3id.org/sedimark/ontology#references
+:references rdf:type owl:ObjectProperty ;
+            rdfs:domain :Agreement ;
+            rdfs:range :Offering .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/sedimark/vocab#algorithm
+<https://w3id.org/sedimark/vocab#algorithm> rdf:type owl:DatatypeProperty ;
+                                            rdfs:domain :AIModelAsset ;
+                                            rdfs:range xsd:string .
+
+
+###  https://w3id.org/sedimark/vocab#category
+<https://w3id.org/sedimark/vocab#category> rdf:type owl:DatatypeProperty ;
+                                           rdfs:domain :AIModelAsset ;
+                                           rdfs:range xsd:string .
+
+
+###  https://w3id.org/sedimark/vocab#execution
+<https://w3id.org/sedimark/vocab#execution> rdf:type owl:DatatypeProperty ;
+                                            rdfs:domain :AIModelAsset ;
+                                            rdfs:range xsd:string .
+
+
+###  https://w3id.org/sedimark/vocab#handlesStream
+<https://w3id.org/sedimark/vocab#handlesStream> rdf:type owl:DatatypeProperty ;
+                                                rdfs:domain :AIModelAsset ;
+                                                rdfs:range xsd:boolean .
+
+
+###  https://w3id.org/sedimark/vocab#inputFormat
+<https://w3id.org/sedimark/vocab#inputFormat> rdf:type owl:DatatypeProperty ;
+                                              rdfs:domain :AIModelAsset ;
+                                              rdfs:range xsd:string .
+
+
+###  https://w3id.org/sedimark/vocab#inputParameters
+<https://w3id.org/sedimark/vocab#inputParameters> rdf:type owl:DatatypeProperty ;
+                                                  rdfs:domain :AIModelAsset ;
+                                                  rdfs:range xsd:string .
+
+
+###  https://w3id.org/sedimark/vocab#outputFormat
+<https://w3id.org/sedimark/vocab#outputFormat> rdf:type owl:DatatypeProperty ;
+                                               rdfs:domain :AIModelAsset ;
+                                               rdfs:range xsd:string .
+
+
+###  https://w3id.org/sedimark/vocab#serialization
+<https://w3id.org/sedimark/vocab#serialization> rdf:type owl:DatatypeProperty ;
+                                                rdfs:domain :AIModelAsset ;
+                                                rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/dc/dcmitype/Service
+<http://purl.org/dc/dcmitype/Service> rdf:type owl:Class .
+
+
+###  http://purl.org/eis/vocab/daq#Category
+<http://purl.org/eis/vocab/daq#Category> rdf:type owl:Class ;
+                                         owl:equivalentClass <http://www.w3.org/ns/dqv#Category> .
+
+
+###  http://purl.org/eis/vocab/daq#Dimension
+<http://purl.org/eis/vocab/daq#Dimension> rdf:type owl:Class ;
+                                          owl:equivalentClass <http://www.w3.org/ns/dqv#Dimension> .
+
+
+###  http://purl.org/eis/vocab/daq#Observation
+<http://purl.org/eis/vocab/daq#Observation> rdf:type owl:Class ;
+                                            owl:equivalentClass <http://www.w3.org/ns/dqv#QualityMeasurement> .
+
+
+###  http://purl.org/linked-data/cube#Observation
+<http://purl.org/linked-data/cube#Observation> rdf:type owl:Class .
+
+
+###  http://schema.org/Organization
+<http://schema.org/Organization> rdf:type owl:Class .
+
+
+###  http://schema.org/Person
+<http://schema.org/Person> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#Resource
+rdfs:Resource rdf:type owl:Class .
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+<http://www.w3.org/2004/02/skos/core#Concept> rdf:type owl:Class ;
+                                              owl:disjointWith <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+
+
+###  http://www.w3.org/2004/02/skos/core#ConceptScheme
+<http://www.w3.org/2004/02/skos/core#ConceptScheme> rdf:type owl:Class ;
+                                                    rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> ;
+                                                    rdfs:label "Concept Scheme"@en ;
+                                                    <http://www.w3.org/2004/02/skos/core#definition> "A set of concepts, optionally including statements about semantic relationships between those concepts."@en ;
+                                                    <http://www.w3.org/2004/02/skos/core#example> "Thesauri, classification schemes, subject heading lists, taxonomies, 'folksonomies', and other types of controlled vocabulary are all examples of concept schemes. Concept schemes are also embedded in glossaries and terminologies."@en ;
+                                                    <http://www.w3.org/2004/02/skos/core#scopeNote> "A concept scheme may be defined to include concepts from different sources."@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Agent
+<http://www.w3.org/2006/vcard/ns#Agent> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/vcard/ns#Individual
+<http://www.w3.org/2006/vcard/ns#Individual> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/vcard/ns#Organization
+<http://www.w3.org/2006/vcard/ns#Organization> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/dcat#Catalog
+<http://www.w3.org/ns/dcat#Catalog> rdf:type owl:Class ;
+                                    rdfs:subClassOf <http://www.w3.org/ns/dcat#Dataset> ;
+                                    rdfs:comment "A curated collection of metadata about resources (e.g., datasets and data services in the context of a data catalog)."@en ,
+                                                 "En udvalgt og arrangeret samling af metadata om ressourcer (fx datasæt og datatjenester i kontekst af et datakatalog). "@da ,
+                                                 "Una colección curada de metadatos sobre recursos (por ejemplo, conjuntos de datos y servicios de datos en el contexto de un catálogo de datos)."@es ,
+                                                 "Una raccolta curata di metadati sulle risorse (ad es. sui dataset e relativi servizi nel contesto di cataloghi di dati)."@it ,
+                                                 "Une collection élaborée de métadonnées sur les jeux de données"@fr ,
+                                                 "Řízená kolekce metadat o datových sadách a datových službách"@cs ,
+                                                 "Μια επιμελημένη συλλογή μεταδεδομένων περί συνόλων δεδομένων"@el ,
+                                                 "مجموعة من توصيفات قوائم البيانات"@ar ,
+                                                 "データ・カタログは、データセットに関するキュレートされたメタデータの集合です。"@ja ;
+                                    rdfs:isDefinedBy <http://www.w3.org/TR/vocab-dcat/> ;
+                                    rdfs:label "Catalog"@en ,
+                                               "Catalogo"@it ,
+                                               "Catalogue"@fr ,
+                                               "Catálogo"@es ,
+                                               "Katalog"@cs ,
+                                               "Katalog"@da ,
+                                               "Κατάλογος"@el ,
+                                               "فهرس قوائم البيانات"@ar ,
+                                               "カタログ"@ja ;
+                                    <http://www.w3.org/2004/02/skos/core#definition> "A curated collection of metadata about resources (e.g., datasets and data services in the context of a data catalog)."@en ,
+                                                                                     "En samling af metadata om ressourcer (fx datasæt og datatjenester i kontekst af et datakatalog)."@da ,
+                                                                                     "Una colección curada de metadatos sobre recursos (por ejemplo, conjuntos de datos y servicios de datos en el contexto de un catálogo de datos)."@es ,
+                                                                                     "Una raccolta curata di metadati sulle risorse (ad es. sui dataset e relativi servizi nel contesto di cataloghi di dati)."@it ,
+                                                                                     "Une collection élaborée de métadonnées sur les jeux de données."@fr ,
+                                                                                     "Řízená kolekce metadat o datových sadách a datových službách."@cs ,
+                                                                                     "Μια επιμελημένη συλλογή μεταδεδομένων περί συνόλων δεδομένων."@el ,
+                                                                                     "مجموعة من توصيفات قوائم البيانات"@ar ,
+                                                                                     "データ・カタログは、データセットに関するキュレートされたメタデータの集合です。"@ja ;
+                                    <http://www.w3.org/2004/02/skos/core#editorialNote> "English, Italian, Spanish definitions updated in this revision. Multilingual text not yet updated."@en ;
+                                    <http://www.w3.org/2004/02/skos/core#scopeNote> "A web-based data catalog is typically represented as a single instance of this class."@en ,
+                                                                                    "Et webbaseret datakatalog repræsenteres typisk ved en enkelt instans af denne klasse."@da ,
+                                                                                    "Normalmente, un catalogo di dati nel web viene rappresentato come una singola istanza di questa classe."@it ,
+                                                                                    "Normalmente, un catálogo de datos disponible en la web se representa como una única instancia de esta clase."@es ,
+                                                                                    "Webový datový katalog je typicky reprezentován jako jedna instance této třídy."@cs ,
+                                                                                    "Συνήθως, ένας κατάλογος δεδομένων στον Παγκόσμιο Ιστό αναπαρίσταται ως ένα στιγμιότυπο αυτής της κλάσης."@el ,
+                                                                                    "通常、ウェブ・ベースのデータ・カタログは、このクラスの1つのインスタンスとして表わされます。"@ja .
+
+
+###  http://www.w3.org/ns/dcat#CatalogRecord
+<http://www.w3.org/ns/dcat#CatalogRecord> rdf:type owl:Class ;
+                                          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <http://xmlns.com/foaf/0.1/primaryTopic> ;
+                                                            owl:allValuesFrom <http://www.w3.org/ns/dcat#Resource>
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <http://xmlns.com/foaf/0.1/primaryTopic> ;
+                                                            owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                          ] ;
+                                          rdfs:comment "1つのデータセットを記述したデータ・カタログ内のレコード。"@ja ,
+                                                       "A record in a data catalog, describing the registration of a single dataset or data service."@en ,
+                                                       "En post i et datakatalog der beskriver registreringen af et enkelt datasæt eller en datatjeneste."@da ,
+                                                       "Un record in un catalogo di dati che descrive un singolo dataset o servizio di dati."@it ,
+                                                       "Un registre du catalogue ou une entrée du catalogue, décrivant un seul jeu de données."@fr ,
+                                                       "Un registro en un catálogo de datos que describe un solo conjunto de datos o un servicio de datos."@es ,
+                                                       "Záznam v datovém katalogu popisující jednu datovou sadu či datovou službu."@cs ,
+                                                       "Μία καταγραφή ενός καταλόγου, η οποία περιγράφει ένα συγκεκριμένο σύνολο δεδομένων."@el ;
+                                          rdfs:isDefinedBy <http://www.w3.org/TR/vocab-dcat/> ;
+                                          rdfs:label "Catalog Record"@en ,
+                                                     "Katalogizační záznam"@cs ,
+                                                     "Katalogpost"@da ,
+                                                     "Record di catalogo"@it ,
+                                                     "Registre du catalogue"@fr ,
+                                                     "Registro del catálogo"@es ,
+                                                     "Καταγραφή καταλόγου"@el ,
+                                                     "سجل"@ar ,
+                                                     "カタログ・レコード"@ja ;
+                                          <http://www.w3.org/2004/02/skos/core#definition> "1つのデータセットを記述したデータ・カタログ内のレコード。"@ja ,
+                                                                                           "A record in a data catalog, describing the registration of a single dataset or data service."@en ,
+                                                                                           "En post i et datakatalog der beskriver registreringen af et enkelt datasæt eller en datatjeneste."@da ,
+                                                                                           "Un record in un catalogo di dati che descrive un singolo dataset o servizio di dati."@it ,
+                                                                                           "Un registre du catalogue ou une entrée du catalogue, décrivant un seul jeu de données."@fr ,
+                                                                                           "Un registro en un catálogo de datos que describe un solo conjunto de datos o un servicio de datos."@es ,
+                                                                                           "Záznam v datovém katalogu popisující jednu datovou sadu či datovou službu."@cs ,
+                                                                                           "Μία καταγραφή ενός καταλόγου, η οποία περιγράφει ένα συγκεκριμένο σύνολο δεδομένων."@el ;
+                                          <http://www.w3.org/2004/02/skos/core#editorialNote> "English definition updated in this revision. Multilingual text not yet updated except the Spanish one and the Czech one and Italian one."@en ;
+                                          <http://www.w3.org/2004/02/skos/core#scopeNote> "C'est une classe facultative et tous les catalogues ne l'utiliseront pas. Cette classe existe pour les catalogues	ayant une distinction entre les métadonnées sur le jeu de données et les métadonnées sur une entrée du jeu de données dans le catalogue."@fr ,
+                                                                                          "Denne klasse er valgfri og ikke alle kataloger vil anvende denne klasse. Den kan anvendes i de kataloger hvor der skelnes mellem metadata om datasættet eller datatjenesten og metadata om selve posten til registreringen af datasættet eller datatjenesten i kataloget. Udgivelsesdatoen for datasættet afspejler for eksempel den dato hvor informationerne oprindeligt blev gjort tilgængelige af udgiveren, hvorimod udgivelsesdatoen for katalogposten er den dato hvor datasættet blev føjet til kataloget. I de tilfælde hvor de to datoer er forskellige eller hvor blot sidstnævnte er kendt, bør udgivelsesdatoen kun angives for katalogposten. Bemærk at W3Cs PROV ontologi gør til muligt at tilføje yderligere proveniensoplysninger eksempelvis om processen eller aktøren involveret i en given ændring af datasættet."@da ,
+                                                                                          "Esta clase es opcional y no todos los catálogos la utilizarán. Esta clase existe para catálogos que hacen una distinción entre los metadatos acerca de un conjunto de datos o un servicio de datos y los metadatos acerca de una entrada en ese conjunto de datos en el catálogo. Por ejemplo, la propiedad sobre la fecha de la publicación de los datos refleja la fecha en que la información fue originalmente publicada, mientras que la fecha de publicación del registro del catálogo es la fecha en que los datos se agregaron al mismo. En caso en que ambas fechas fueran diferentes, o en que sólo la fecha de publicación del registro del catálogo estuviera disponible, sólo debe especificarse en el registro del catálogo. Tengan en cuenta que la ontología PROV de W3C permite describir otra información sobre la proveniencia de los datos, como por ejemplo detalles del proceso y de los agentes involucrados en algún cambio específico a los datos."@es ,
+                                                                                          "Questa classe è opzionale e non tutti i cataloghi la utilizzeranno. Esiste per cataloghi in cui si opera una distinzione tra i metadati relativi al dataset ed i metadati relativi alla gestione del dataset nel catalogo. Ad esempio, la  proprietà per indicare la data di pubblicazione del dataset rifletterà la data in cui l'informazione è stata originariamente messa a disposizione dalla casa editrice, mentre la data di pubblicazione per il record nel catalogo rifletterà la data in cui il dataset è stato aggiunto al catalogo. Nei casi dove solo quest'ultima sia nota, si utilizzerà esclusivamente la data di  pubblicazione relativa al record del catalogo. Si noti che l'Ontologia W3C PROV permette di descrivere ulteriori informazioni sulla provenienza, quali i dettagli del processo, la procedura e l'agente coinvolto in una particolare modifica di un dataset."@it ,
+                                                                                          "Tato třída je volitelná a ne všechny katalogy ji využijí. Existuje pro katalogy, ve kterých se rozlišují metadata datové sady či datové služby a metadata o záznamu o datové sadě či datové službě v katalogu. Například datum publikace datové sady odráží datum, kdy byla datová sada původně zveřejněna poskytovatelem dat, zatímco datum publikace katalogizačního záznamu je datum zanesení datové sady do katalogu. V případech kdy se obě data liší, nebo je známo jen to druhé, by mělo být specifikováno jen datum publikace katalogizačního záznamu. Všimněte si, že ontologie W3C PROV umožňuje popsat další informace o původu jako například podrobnosti o procesu konkrétní změny datové sady a jeho účastnících."@cs ,
+                                                                                          "This class is optional and not all catalogs will use it. It exists for catalogs where a distinction is made between metadata about a dataset or data service and metadata about the entry for the dataset or data service in the catalog. For example, the publication date property of the dataset reflects the date when the information was originally made available by the publishing agency, while the publication date of the catalog record is the date when the dataset was added to the catalog. In cases where both dates differ, or where only the latter is known, the publication date should only be specified for the catalog record. Notice that the W3C PROV Ontology allows describing further provenance information such as the details of the process and the agent involved in a particular change to a dataset."@en ,
+                                                                                          "Αυτή η κλάση είναι προαιρετική και δεν χρησιμοποιείται από όλους τους καταλόγους. Υπάρχει για τις περιπτώσεις καταλόγων όπου γίνεται διαχωρισμός μεταξύ των μεταδεδομένων για το σύνολο των δεδομένων και των μεταδεδομένων για την καταγραφή του συνόλου δεδομένων εντός του καταλόγου. Για παράδειγμα, η ιδιότητα της ημερομηνίας δημοσίευσης του συνόλου δεδομένων δείχνει την ημερομηνία κατά την οποία οι πληροφορίες έγιναν διαθέσιμες από τον φορέα δημοσίευσης, ενώ η ημερομηνία δημοσίευσης της καταγραφής του καταλόγου δείχνει την ημερομηνία που το σύνολο δεδομένων προστέθηκε στον κατάλογο. Σε περιπτώσεις που οι δύο ημερομηνίες διαφέρουν, ή που μόνο η τελευταία είναι γνωστή, η ημερομηνία δημοσίευσης θα πρέπει να δίνεται για την καταγραφή του καταλόγου. Να σημειωθεί πως η οντολογία W3C PROV επιτρέπει την περιγραφή επιπλέον πληροφοριών ιστορικού όπως λεπτομέρειες για τη διαδικασία και τον δράστη που εμπλέκονται σε μία συγκεκριμένη αλλαγή εντός του συνόλου δεδομένων."@el ,
+                                                                                          "このクラスはオプションで、すべてのカタログがそれを用いるとは限りません。これは、データセットに関するメタデータとカタログ内のデータセットのエントリーに関するメタデータとで区別が行われるカタログのために存在しています。例えば、データセットの公開日プロパティーは、公開機関が情報を最初に利用可能とした日付を示しますが、カタログ・レコードの公開日は、データセットがカタログに追加された日付です。両方の日付が異っていたり、後者だけが分かっている場合は、カタログ・レコードに対してのみ公開日を指定すべきです。W3CのPROVオントロジー[prov-o]を用いれば、データセットに対する特定の変更に関連するプロセスやエージェントの詳細などの、さらに詳しい来歴情報の記述が可能となることに注意してください。"@ja .
+
+
+###  http://www.w3.org/ns/dcat#DataService
+<http://www.w3.org/ns/dcat#DataService> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://purl.org/dc/dcmitype/Service> ,
+                                                        <http://www.w3.org/ns/dcat#Resource> ;
+                                        rdfs:comment "A site or end-point providing operations related to the discovery of, access to, or processing functions on, data or related resources."@en ,
+                                                     "Et websted eller endpoint der udstiller operationer relateret til opdagelse af, adgang til eller behandlende funktioner på data eller relaterede ressourcer."@da ,
+                                                     "Umístění či přístupový bod poskytující operace související s hledáním, přistupem k, či výkonem funkcí na datech či souvisejících zdrojích."@cs ,
+                                                     "Un sitio o end-point que provee operaciones relacionadas a funciones de descubrimiento, acceso, o procesamiento de datos o recursos relacionados."@es ,
+                                                     "Un sito o end-point che fornisce operazioni relative alla scoperta, all'accesso o all'elaborazione di funzioni su dati o risorse correlate."@it ;
+                                        rdfs:label "Data service"@en ,
+                                                   "Datatjeneste"@da ,
+                                                   "Servicio de datos"@es ,
+                                                   "Servizio di dati"@it ;
+                                        <http://www.w3.org/2004/02/skos/core#altLabel> "Dataservice"@da ;
+                                        <http://www.w3.org/2004/02/skos/core#changeNote> "New class added in DCAT 2.0."@en ,
+                                                                                         "Nová třída přidaná ve verzi DCAT 2.0."@cs ,
+                                                                                         "Nueva clase añadida en DCAT 2.0."@es ,
+                                                                                         "Nuova classe aggiunta in DCAT 2.0."@it ,
+                                                                                         "Ny klasse tilføjet i DCAT 2.0."@da ;
+                                        <http://www.w3.org/2004/02/skos/core#definition> "A site or end-point providing operations related to the discovery of, access to, or processing functions on, data or related resources."@en ,
+                                                                                         "Et site eller endpoint der udstiller operationer relateret til opdagelse af, adgang til eller behandlende funktioner på data eller relaterede ressourcer."@da ,
+                                                                                         "Umístění či přístupový bod poskytující operace související s hledáním, přistupem k, či výkonem funkcí na datech či souvisejících zdrojích."@cs ,
+                                                                                         "Un sitio o end-point que provee operaciones relacionadas a funciones de descubrimiento, acceso, o procesamiento de datos o recursos relacionados."@es ,
+                                                                                         "Un sito o end-point che fornisce operazioni relative alla scoperta, all'accesso o all'elaborazione di funzioni su dati o risorse correlate."@it ;
+                                        <http://www.w3.org/2004/02/skos/core#scopeNote> "Datatjenestetypen kan indikeres ved hjælp af egenskaben dct:type. Værdien kan tages fra kontrollerede udfaldsrum såsom INSPIRE spatial data service vocabulary."@da ,
+                                                                                        "Druh služby může být indikován vlastností dct:type. Její hodnota může být z řízeného slovníku, kterým je například slovník typů prostorových datových služeb INSPIRE."@cs ,
+                                                                                        "El tipo de servicio puede indicarse usando la propiedad dct:type. Su valor puede provenir de un vocabulario controlado, como por ejemplo el vocabulario de servicios de datos espaciales de INSPIRE."@es ,
+                                                                                        "Hvis en dcat:DataService er bundet til en eller flere specifikke datasæt kan dette indikeres ved hjælp af egenskaben dcat:servesDataset. "@da ,
+                                                                                        "If a dcat:DataService is bound to one or more specified Datasets, they are indicated by the dcat:servesDataset property."@en ,
+                                                                                        "Il tipo di servizio può essere indicato usando la proprietà dct:type. Il suo valore può essere preso da un vocabolario controllato come il vocabolario dei tipi di servizi per dati spaziali di INSPIRE."@it ,
+                                                                                        "Pokud je dcat:DataService navázána na jednu či více Datových sad, jsou tyto indikovány vlstností dcat:servesDataset."@cs ,
+                                                                                        "Se un dcat:DataService è associato a uno o più Dataset specificati, questi sono indicati dalla proprietà dcat:serveDataset."@it ,
+                                                                                        "Si un dcat:DataService está asociado con uno o más conjuntos de datos especificados, dichos conjuntos de datos pueden indicarse con la propiedad dcat:servesDataset."@es ,
+                                                                                        "The kind of service can be indicated using the dct:type property. Its value may be taken from a controlled vocabulary such as the INSPIRE spatial data service type vocabulary."@en .
+
+
+###  http://www.w3.org/ns/dcat#Dataset
+<http://www.w3.org/ns/dcat#Dataset> rdf:type owl:Class ;
+                                    rdfs:subClassOf <http://www.w3.org/ns/dcat#Resource> ;
+                                    rdfs:comment "1つのエージェントによって公開またはキュレートされ、1つ以上の形式でアクセスまたはダウンロードできるデータの集合。"@ja ,
+                                                 "A collection of data, published or curated by a single source, and available for access or download in one or more representations."@en ,
+                                                 "En samling af data, udgivet eller udvalgt og arrangeret af en enkelt kilde og som er til råde for adgang til eller download af i en eller flere repræsentationer."@da ,
+                                                 "Kolekce dat poskytovaná či řízená jedním zdrojem, která je k dispozici pro přístup či stažení v jednom či více formátech."@cs ,
+                                                 "Raccolta di dati, pubblicati o curati da un'unica fonte, disponibili per l'accesso o il download in uno o più formati."@it ,
+                                                 "Una colección de datos, publicados o conservados por una única fuente, y disponibles para ser accedidos o descargados en uno o más formatos."@es ,
+                                                 "Une collection de données, publiée ou élaborée par une seule source, et disponible pour accès ou téléchargement dans un ou plusieurs formats."@fr ,
+                                                 "Μία συλλογή από δεδομένα, δημοσιευμένη ή επιμελημένη από μία και μόνο πηγή, διαθέσιμη δε προς πρόσβαση ή μεταφόρτωση σε μία ή περισσότερες μορφές."@el ,
+                                                 "قائمة بيانات منشورة أو مجموعة من قبل مصدر ما و متاح الوصول إليها أو تحميلها"@ar ;
+                                    rdfs:isDefinedBy <http://www.w3.org/TR/vocab-dcat/> ;
+                                    rdfs:label "Conjunto de datos"@es ,
+                                               "Dataset"@en ,
+                                               "Dataset"@it ,
+                                               "Datasæt"@da ,
+                                               "Datová sada"@cs ,
+                                               "Jeu de données"@fr ,
+                                               "Σύνολο Δεδομένων"@el ,
+                                               "قائمة بيانات"@ar ,
+                                               "データセット"@ja ;
+                                    <http://www.w3.org/2004/02/skos/core#altLabel> "Datasamling"@da ;
+                                    <http://www.w3.org/2004/02/skos/core#changeNote> "2018-02 - odstraněno tvrzení o podtřídě dctype:Dataset, jelikož rozsah dcat:Dataset zahrnuje několik dalších typů ze slovníku dctype."@cs ,
+                                                                                     "2018-02 - se eliminó el axioma de subclase con dctype:Dataset porque el alcance de dcat:Dataset incluye muchos otros tipos del vocabulario dctype."@es ,
+                                                                                     "2018-02 - sottoclasse di dctype:Dataset rimosso perché l'ambito di dcat:Dataset include diversi altri tipi dal vocabolario dctype."@it ,
+                                                                                     "2018-02 - subclass of dctype:Dataset removed because scope of dcat:Dataset includes several other types from the dctype vocabulary."@en ,
+                                                                                     "2018-02 - subklasse af dctype:Dataset fjernet da scope af dcat:Dataset omfatter flere forskellige typer fra dctype-vokabularet."@da ;
+                                    <http://www.w3.org/2004/02/skos/core#definition> "1つのエージェントによって公開またはキュレートされ、1つ以上の形式でアクセスまたはダウンロードできるデータの集合。"@ja ,
+                                                                                     "A collection of data, published or curated by a single source, and available for access or download in one or more represenations."@en ,
+                                                                                     "En samling a data, udgivet eller udvalgt og arrangeret af en enkelt kilde og som der er adgang til i en eller flere repræsentationer."@da ,
+                                                                                     "Kolekce dat poskytovaná či řízená jedním zdrojem, která je k dispozici pro přístup či stažení v jednom či více formátech."@cs ,
+                                                                                     "Raccolta di dati, pubblicati o curati da un'unica fonte, disponibili per l'accesso o il download in uno o più formati."@it ,
+                                                                                     "Una colección de datos, publicados o conservados por una única fuente, y disponibles para ser accedidos o descargados en uno o más formatos."@es ,
+                                                                                     "Une collection de données, publiée ou élaborée par une seule source, et disponible pour accès ou téléchargement dans un ou plusieurs formats."@fr ,
+                                                                                     "Μία συλλογή από δεδομένα, δημοσιευμένη ή επιμελημένη από μία και μόνο πηγή, διαθέσιμη δε προς πρόσβαση ή μεταφόρτωση σε μία ή περισσότερες μορφές."@el ,
+                                                                                     "قائمة بيانات منشورة أو مجموعة من قبل مصدر ما و متاح الوصول إليها أو تحميلها"@ar ;
+                                    <http://www.w3.org/2004/02/skos/core#editorialNote> "2020-03-16 A new scopenote added and need to be translated"@en ;
+                                    <http://www.w3.org/2004/02/skos/core#scopeNote> "Cette classe représente le jeu de données publié par le fournisseur de données. Dans les cas où une distinction est nécessaire entre le jeu de donénes et son entrée dans le catalogue, la classe registre de données peut être utilisée pour ce dernier."@fr ,
+                                                                                    "Denne klasse beskriver det konceptuelle datasæt. En eller flere repræsentationer kan være tilgængelige med forskellige skematiske opsætninger, formater eller serialiseringer."@da ,
+                                                                                    "Denne klasse repræsenterer det konkrete datasæt som det udgives af datasætleverandøren. I de tilfælde hvor det er nødvendigt at skelne mellem det konkrete datasæt og dets registrering i kataloget (fordi metadata såsom ændringsdato og vedligeholder er forskellige), så kan klassen katalogpost anvendes. "@da ,
+                                                                                    "Esta clase representa el conjunto de datos publicados. En los casos donde es necesario distinguir entre el conjunto de datos y su entrada en el catálogo de datos, se debe utilizar la clase 'registro del catálogo'."@es ,
+                                                                                    "Questa classe descrive il dataset dal punto di vista concettuale. Possono essere disponibili una o più rappresentazioni, con diversi layout e formati schematici o serializzazioni."@it ,
+                                                                                    "Questa classe rappresenta il dataset come pubblicato dall’editore. Nel caso in cui sia necessario operare  una distinzione fra i metadati originali del dataset e il record dei metadati ad esso associato nel catalogo (ad esempio, per distinguere la data di modifica del dataset da quella del dataset nel catalogo) si può impiegare la classe catalog record."@it ,
+                                                                                    "Tato třída reprezentuje datovou sadu tak, jak je publikována poskytovatelem dat. V případě potřeby rozlišení datové sady a jejího katalogizačního záznamu (jelikož metadata jako datum modifikace se mohou lišit) pro něj může být použita třída \"katalogizační záznam\"."@cs ,
+                                                                                    "The notion of dataset in DCAT is broad and inclusive, with the intention of accommodating resource types arising from all communities. Data comes in many forms including numbers, text, pixels, imagery, sound and other multi-media, and potentially other types, any of which might be collected into a dataset."@en ,
+                                                                                    "This class describes the conceptual dataset. One or more representations might be available, with differing schematic layouts and formats or serializations."@en ,
+                                                                                    "This class represents the actual dataset as published by the dataset provider. In cases where a distinction between the actual dataset and its entry in the catalog is necessary (because metadata such as modification date and maintainer might differ), the catalog record class can be used for the latter."@en ,
+                                                                                    "Η κλάση αυτή αναπαριστά το σύνολο δεδομένων αυτό καθ'εαυτό, όπως έχει δημοσιευθεί από τον εκδότη. Σε περιπτώσεις όπου είναι απαραίτητος ο διαχωρισμός μεταξύ του συνόλου δεδομένων και της καταγραφής αυτού στον κατάλογο (γιατί μεταδεδομένα όπως η ημερομηνία αλλαγής και ο συντηρητής μπορεί να διαφέρουν) η κλάση της καταγραφής καταλόγου μπορεί να χρησιμοποιηθεί για το τελευταίο."@el ,
+                                                                                    "このクラスは、データセットの公開者が公開する実際のデータセットを表わします。カタログ内の実際のデータセットとそのエントリーとの区別が必要な場合（修正日と維持者などのメタデータが異なるかもしれないので）は、後者にcatalog recordというクラスを使用できます。"@ja .
+
+
+###  http://www.w3.org/ns/dcat#Distribution
+<http://www.w3.org/ns/dcat#Distribution> rdf:type owl:Class ;
+                                         rdfs:comment "A specific representation of a dataset. A dataset might be available in multiple serializations that may differ in various ways, including natural language, media-type or format, schematic organization, temporal and spatial resolution, level of detail or profiles (which might specify any or all of the above)."@en ,
+                                                      "En specifik repræsentation af et datasæt. Et datasæt kan være tilgængelig i mange serialiseringer der kan variere på forskellige vis, herunder sprog, medietype eller format, systemorganisering, tidslig- og geografisk opløsning, detaljeringsniveau eller profiler (der kan specificere en eller flere af ovenstående)."@da ,
+                                                      "Konkrétní reprezentace datové sady. Datová sada může být dostupná v různých serializacích, které se mohou navzájem lišit různými způsoby, mimo jiné přirozeným jazykem, media-typem či formátem, schematickou organizací, časovým a prostorovým rozlišením, úrovní detailu či profily (které mohou specifikovat některé či všechny tyto rozdíly)."@cs ,
+                                                      "Rappresenta una forma disponibile e specifica del dataset. Ciascun dataset può essere disponibile in forme differenti, che possono rappresentare formati diversi o diversi punti di accesso per un dataset. Esempi di distribuzioni sono un file CSV scaricabile, una API o un RSS feed."@it ,
+                                                      "Représente une forme spécifique d'un jeu de données. Caque jeu de données peut être disponible sous différentes formes, celles-ci pouvant représenter différents formats du jeu de données ou différents endpoint. Des exemples de distribution sont des fichirs CSV, des API ou des flux RSS."@fr ,
+                                                      "Una representación específica de los datos. Cada conjunto de datos puede estar disponible en formas diferentes, las cuáles pueden variar en distintas formas, incluyendo el idioma, 'media-type' o formato, organización esquemática, resolución temporal y espacial, nivel de detalle o perfiles (que pueden especificar cualquiera o todas las diferencias anteriores)."@es ,
+                                                      "Αναπαριστά μία συγκεκριμένη διαθέσιμη μορφή ενός συνόλου δεδομένων. Κάθε σύνολο δεδομενων μπορεί να είναι διαθέσιμο σε διαφορετικές μορφές, οι μορφές αυτές μπορεί να αναπαριστούν διαφορετικές μορφές αρχείων ή διαφορετικά σημεία διάθεσης. Παραδείγματα διανομών συμπεριλαμβάνουν ένα μεταφορτώσιμο αρχείο μορφής CSV, ένα API ή ένα RSS feed."@el ,
+                                                      "شكل محدد لقائمة البيانات يمكن الوصول إليه. قائمة بيانات ما يمكن أن تكون متاحه باشكال و أنواع متعددة.  ملف يمكن تحميله أو واجهة برمجية يمكن من خلالها الوصول إلى البيانات هي أمثلة على ذلك."@ar ,
+                                                      "データセットの特定の利用可能な形式を表わします。各データセットは、異なる形式で利用できることがあり、これらの形式は、データセットの異なる形式や、異なるエンドポイントを表わす可能性があります。配信の例には、ダウンロード可能なCSVファイル、API、RSSフィードが含まれます。"@ja ;
+                                         rdfs:isDefinedBy <http://www.w3.org/TR/vocab-dcat/> ;
+                                         rdfs:label "Distribuce"@cs ,
+                                                    "Distribución"@es ,
+                                                    "Distribution"@da ,
+                                                    "Distribution"@en ,
+                                                    "Distribution"@fr ,
+                                                    "Distribuzione"@it ,
+                                                    "Διανομή"@el ,
+                                                    "التوزيع"@ar ,
+                                                    "配信"@ja ;
+                                         <http://www.w3.org/2004/02/skos/core#altLabel> "Datadistribution"@da ,
+                                                                                        "Datamanifestation"@da ,
+                                                                                        "Datarepræsentation"@da ,
+                                                                                        "Dataudstilling"@da ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "A specific representation of a dataset. A dataset might be available in multiple serializations that may differ in various ways, including natural language, media-type or format, schematic organization, temporal and spatial resolution, level of detail or profiles (which might specify any or all of the above)."@en ,
+                                                                                          "En specifik repræsentation af et datasæt. Et datasæt kan være tilgængelig i mange serialiseringer der kan variere på forskellige vis, herunder sprog, medietype eller format, systemorganisering, tidslig- og geografisk opløsning, detaljeringsniveau eller profiler (der kan specificere en eller flere af ovenstående)."@da ,
+                                                                                          "Konkrétní reprezentace datové sady. Datová sada může být dostupná v různých serializacích, které se mohou navzájem lišit různými způsoby, mimo jiné přirozeným jazykem, media-typem či formátem, schematickou organizací, časovým a prostorovým rozlišením, úrovní detailu či profily (které mohou specifikovat některé či všechny tyto rozdíly)."@cs ,
+                                                                                          "Rappresenta una forma disponibile e specifica del dataset. Ciascun dataset può essere disponibile in forme differenti, che possono rappresentare formati diversi o diversi punti di accesso per un dataset. Esempi di distribuzioni sono un file CSV scaricabile, una API o un RSS feed."@it ,
+                                                                                          "Représente une forme spécifique d'un jeu de données. Caque jeu de données peut être disponible sous différentes formes, celles-ci pouvant représenter différents formats du jeu de données ou différents endpoint. Des exemples de distribution sont des fichirs CSV, des API ou des flux RSS."@fr ,
+                                                                                          "Una representación específica de los datos. Cada conjunto de datos puede estar disponible en formas diferentes, las cuáles pueden variar en distintas formas, incluyendo el idioma, 'media-type' o formato, organización esquemática, resolución temporal y espacial, nivel de detalle o perfiles (que pueden especificar cualquiera o todas las diferencias anteriores)."@es ,
+                                                                                          "Αναπαριστά μία συγκεκριμένη διαθέσιμη μορφή ενός συνόλου δεδομένων. Κάθε σύνολο δεδομενων μπορεί να είναι διαθέσιμο σε διαφορετικές μορφές, οι μορφές αυτές μπορεί να αναπαριστούν διαφορετικές μορφές αρχείων ή διαφορετικά σημεία διάθεσης. Παραδείγματα διανομών συμπεριλαμβάνουν ένα μεταφορτώσιμο αρχείο μορφής CSV, ένα API ή ένα RSS feed."@el ,
+                                                                                          "شكل محدد لقائمة البيانات يمكن الوصول إليه. قائمة بيانات ما يمكن أن تكون متاحه باشكال و أنواع متعددة.  ملف يمكن تحميله أو واجهة برمجية يمكن من خلالها الوصول إلى البيانات هي أمثلة على ذلك."@ar ,
+                                                                                          "データセットの特定の利用可能な形式を表わします。各データセットは、異なる形式で利用できることがあり、これらの形式は、データセットの異なる形式や、異なるエンドポイントを表わす可能性があります。配信の例には、ダウンロード可能なCSVファイル、API、RSSフィードが含まれます。"@ja ;
+                                         <http://www.w3.org/2004/02/skos/core#scopeNote> "Ceci représente une disponibilité générale du jeu de données, et implique qu'il n'existe pas d'information sur la méthode d'accès réelle des données, par exple, si c'est un lien de téléchargement direct ou à travers une page Web."@fr ,
+                                                                                         "Denne klasse repræsenterer datasættets overordnede tilgængelighed og giver ikke oplysninger om hvilken metode der kan anvendes til at få adgang til data, dvs. om adgang til datasættet realiseres ved direkte download, API eller via et websted. Anvendelsen af egenskaben dcat:downloadURL indikerer at distributionen kan downloades direkte."@da ,
+                                                                                         "Esta clase representa una disponibilidad general de un conjunto de datos, e implica que no existe información acerca del método de acceso real a los datos, i.e., si es un enlace de descarga directa o a través de una página Web."@es ,
+                                                                                         "Questa classe rappresenta una disponibilità generale di un dataset e non implica alcuna informazione sul metodo di accesso effettivo ai dati, ad esempio se si tratta di un accesso a download diretto, API, o attraverso una pagina Web. L'utilizzo della proprietà dcat:downloadURL indica distribuzioni direttamente scaricabili."@it ,
+                                                                                         "This represents a general availability of a dataset it implies no information about the actual access method of the data, i.e. whether by direct download, API, or through a Web page. The use of dcat:downloadURL property indicates directly downloadable distributions."@en ,
+                                                                                         "Toto popisuje obecnou dostupnost datové sady. Neimplikuje žádnou informaci o skutečné metodě přístupu k datům, tj. zda jsou přímo ke stažení, skrze API či přes webovou stránku. Použití vlastnosti dcat:downloadURL indikuje přímo stažitelné distribuce."@cs ,
+                                                                                         "Αυτό αναπαριστά μία γενική διαθεσιμότητα ενός συνόλου δεδομένων και δεν υπονοεί τίποτα περί του πραγματικού τρόπου πρόσβασης στα δεδομένα, αν είναι άμεσα μεταφορτώσιμα, μέσω API ή μέσω μίας ιστοσελίδας. Η χρήση της ιδιότητας dcat:downloadURL δείχνει μόνο άμεσα μεταφορτώσιμες διανομές."@el ,
+                                                                                         "これは、データセットの一般的な利用可能性を表わし、データの実際のアクセス方式に関する情報（つまり、直接ダウンロードなのか、APIなのか、ウェブページを介したものなのか）を意味しません。dcat:downloadURLプロパティーの使用は、直接ダウンロード可能な配信を意味します。"@ja .
+
+
+###  http://www.w3.org/ns/dcat#Resource
+<http://www.w3.org/ns/dcat#Resource> rdf:type owl:Class ;
+                                     rdfs:comment "Recurso publicado o curado por un agente único."@es ,
+                                                  "Resource published or curated by a single agent."@en ,
+                                                  "Ressource udgivet eller udvalgt og arrangeret af en enkelt aktør."@da ,
+                                                  "Risorsa pubblicata o curata da un singolo agente."@it ,
+                                                  "Zdroj publikovaný či řízený jediným činitelem."@cs ;
+                                     rdfs:label "Catalogued resource"@en ,
+                                                "Katalogiseret ressource"@da ,
+                                                "Katalogizovaný zdroj"@cs ,
+                                                "Recurso catalogado"@es ,
+                                                "Risorsa catalogata"@it ;
+                                     <http://www.w3.org/2004/02/skos/core#changeNote> "New class added in DCAT 2.0."@en ,
+                                                                                      "Nová třída přidaná ve verzi DCAT 2.0."@cs ,
+                                                                                      "Nueva clase agregada en DCAT 2.0."@es ,
+                                                                                      "Nuova classe aggiunta in DCAT 2.0."@it ,
+                                                                                      "Ny klasse i DCAT 2.0."@da ;
+                                     <http://www.w3.org/2004/02/skos/core#definition> "Recurso publicado o curado por un agente único."@es ,
+                                                                                      "Resource published or curated by a single agent."@en ,
+                                                                                      "Ressource udgivet eller udvalgt og arrangeret af en enkelt aktør."@da ,
+                                                                                      "Risorsa pubblicata o curata da un singolo agente."@it ,
+                                                                                      "Zdroj publikovaný či řízený jediným činitelem."@cs ;
+                                     <http://www.w3.org/2004/02/skos/core#scopeNote> "Klassen for alle katalogiserede ressourcer, den overordnede klasse for dcat:Dataset, dcat:DataService, dcat:Catalog og enhvert medlem af et dcat:Catalog. Denne klasse bærer egenskaber der gælder alle katalogiserede ressourcer, herunder dataset og datatjenester. Det anbefales kraftigt at mere specifikke subklasser oprettes. Når der beskrives ressourcer der ikke er dcat:Dataset eller dcat:DataService, anbefales det at oprette passende subklasser af dcat:Resource eller at dcat:Resource anvendes sammen med egenskaben dct:type til opmærkning med en specifik typeangivelse."@da ,
+                                                                                     "La clase de todos los recursos catalogados, la superclase de dcat:Dataset, dcat:DataService, dcat:Catalog y cualquier otro miembro de un dcat:Catalog. Esta clase tiene propiedades comunes a todos los recursos catalogados, incluyendo conjuntos de datos y servicios de datos. Se recomienda fuertemente que se use una clase más específica. Cuando se describe un recurso que no es un dcat:Dataset o dcat:DataService, se recomienda crear una sub-clase apropiada de dcat:Resource, o usar dcat:Resource con la propiedad dct:type to indicar el tipo específico."@es ,
+                                                                                     "La classe di tutte le risorse catalogate, la Superclasse di dcat:Dataset, dcat:DataService, dcat:Catalog e qualsiasi altro membro di dcat:Catalog. Questa classe porta proprietà comuni a tutte le risorse catalogate, inclusi set di dati e servizi dati. Si raccomanda vivamente di utilizzare una sottoclasse più specifica. Quando si descrive una risorsa che non è un dcat:Dataset o dcat:DataService, si raccomanda di creare una sottoclasse di dcat:Resource appropriata, o utilizzare dcat:Resource con la proprietà dct:type per indicare il tipo specifico."@it ,
+                                                                                     "The class of all catalogued resources, the Superclass of dcat:Dataset, dcat:DataService, dcat:Catalog and any other member of a dcat:Catalog. This class carries properties common to all catalogued resources, including datasets and data services. It is strongly recommended to use a more specific sub-class. When describing a resource which is not a dcat:Dataset or dcat:DataService, it is recommended to create a suitable sub-class of dcat:Resource, or use dcat:Resource with the dct:type property to indicate the specific type."@en ,
+                                                                                     "Třída všech katalogizovaných zdrojů, nadtřída dcat:Dataset, dcat:DataService, dcat:Catalog a všech ostatních členů dcat:Catalog. Tato třída nese vlastnosti společné všem katalogizovaným zdrojům včetně datových sad a datových služeb. Je silně doporučeno používat specifičtější podtřídy, pokud je to možné. Při popisu zdroje, který není ani dcat:Dataset, ani dcat:DataService se doporučuje vytvořit odpovídající podtřídu dcat:Resrouce a nebo použít dcat:Resource s vlastností dct:type pro určení konkrétního typu."@cs ,
+                                                                                     "dcat:Resource er et udvidelsespunkt der tillader oprettelsen af enhver type af kataloger. Yderligere subklasser kan defineres i en DCAT-profil eller i en applikation til kataloger med andre typer af ressourcer."@da ,
+                                                                                     "dcat:Resource es un punto de extensión que permite la definición de cualquier tipo de catálogo. Se pueden definir subclases adicionales en perfil de DCAT o una aplicación para catálogos de otro tipo de recursos."@es ,
+                                                                                     "dcat:Resource is an extension point that enables the definition of any kind of catalog. Additional subclasses may be defined in a DCAT profile or application for catalogs of other kinds of resources."@en ,
+                                                                                     "dcat:Resource je bod pro rozšíření umožňující definici různých druhů katalogů. Další podtřídy lze definovat v profilech DCAT či aplikacích pro katalogy zdrojů jiných druhů."@cs ,
+                                                                                     "dcat:Resource è un punto di estensione che consente la definizione di qualsiasi tipo di catalogo. Sottoclassi aggiuntive possono essere definite in un profilo DCAT o in un'applicazione per cataloghi di altri tipi di risorse."@it .
+
+
+###  http://www.w3.org/ns/dqv#Category
+<http://www.w3.org/ns/dqv#Category> rdf:type owl:Class ;
+                                    rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                    rdfs:comment "Represents a group of quality dimensions in which a common type of information is used as quality indicator."@en ;
+                                    rdfs:label "Category"@en .
+
+
+###  http://www.w3.org/ns/dqv#Dimension
+<http://www.w3.org/ns/dqv#Dimension> rdf:type owl:Class ;
+                                     rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                     rdfs:comment "Represents criteria relevant for assessing quality. Each quality dimension must have one or more metric to measure it. A dimension is linked with a category using the dqv:inCategory property."@en ;
+                                     rdfs:label "Dimension"@en .
+
+
+###  http://www.w3.org/ns/dqv#Metric
+<http://www.w3.org/ns/dqv#Metric> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/dqv#QualityMeasurement
+<http://www.w3.org/ns/dqv#QualityMeasurement> rdf:type owl:Class ;
+                                              rdfs:subClassOf <http://purl.org/linked-data/cube#Observation> ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <http://www.w3.org/ns/dqv#computedOn> ;
+                                                                owl:someValuesFrom :Asset
+                                                              ] ;
+                                              <http://purl.org/vocab/vann/usageNote> "The unit of measure in quality measurement should be specified through the property sdmx-attribute:unitMeasure as recommended by RDF Data Cube. The Ontology of units of Measure (OM) by Rijgersberg Et Al provides a list of HTTP dereferenceable unit of measures, which can be exploited as values for sdmx-attribute:unitMeasure."@en ;
+                                              rdfs:comment "Represents the evaluation of a given dataset (or dataset distribution) against a specific quality metric."@en ;
+                                              rdfs:label "Quality Measurement"@en .
+
+
+###  http://www.w3.org/ns/odrl/2/Agreement
+<http://www.w3.org/ns/odrl/2/Agreement> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.w3.org/ns/odrl/2/Policy> ;
+                                        owl:disjointWith <http://www.w3.org/ns/odrl/2/Assertion> ,
+                                                         <http://www.w3.org/ns/odrl/2/Offer> ,
+                                                         <http://www.w3.org/ns/odrl/2/Privacy> ,
+                                                         <http://www.w3.org/ns/odrl/2/Request> ,
+                                                         <http://www.w3.org/ns/odrl/2/Set> ,
+                                                         <http://www.w3.org/ns/odrl/2/Ticket> ;
+                                        rdfs:isDefinedBy <http://www.w3.org/ns/odrl/2/> ;
+                                        rdfs:label "Agreement"@en ;
+                                        <http://www.w3.org/2004/02/skos/core#definition> "A Policy that grants the assignee a Rule over an Asset from an assigner."@en ;
+                                        <http://www.w3.org/2004/02/skos/core#note> "An Agreement Policy MUST contain at least one Permission or Prohibition rule, a Party with Assigner function, and a Party with Assignee function (in the same Permission or Prohibition). The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee."@en .
+
+
+###  http://www.w3.org/ns/odrl/2/Assertion
+<http://www.w3.org/ns/odrl/2/Assertion> rdf:type owl:Class ;
+                                        owl:disjointWith <http://www.w3.org/ns/odrl/2/Offer> .
+
+
+###  http://www.w3.org/ns/odrl/2/Asset
+<http://www.w3.org/ns/odrl/2/Asset> rdf:type owl:Class ;
+                                    rdfs:isDefinedBy <http://www.w3.org/ns/odrl/2/> ;
+                                    rdfs:label "Asset"@en ;
+                                    <http://www.w3.org/2004/02/skos/core#definition> "A resource or a collection of resources that are the subject of a Rule."@en ;
+                                    <http://www.w3.org/2004/02/skos/core#note> "The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommended to use Dublin Core [[dcterms]] elements or other content metadata."@en .
+
+
+###  http://www.w3.org/ns/odrl/2/Duty
+<http://www.w3.org/ns/odrl/2/Duty> rdf:type owl:Class ;
+                                   rdfs:subClassOf <http://www.w3.org/ns/odrl/2/Rule> ;
+                                   owl:disjointWith <http://www.w3.org/ns/odrl/2/Permission> ,
+                                                    <http://www.w3.org/ns/odrl/2/Prohibition> ;
+                                   rdfs:isDefinedBy <http://www.w3.org/ns/odrl/2/> ;
+                                   rdfs:label "Duty"@en ;
+                                   <http://www.w3.org/2004/02/skos/core#definition> "The obligation to perform an Action"@en .
+
+
+###  http://www.w3.org/ns/odrl/2/Offer
+<http://www.w3.org/ns/odrl/2/Offer> rdf:type owl:Class ;
+                                    rdfs:subClassOf <http://www.w3.org/ns/odrl/2/Policy> ;
+                                    owl:disjointWith <http://www.w3.org/ns/odrl/2/Privacy> ,
+                                                     <http://www.w3.org/ns/odrl/2/Request> ,
+                                                     <http://www.w3.org/ns/odrl/2/Set> ,
+                                                     <http://www.w3.org/ns/odrl/2/Ticket> ;
+                                    rdfs:isDefinedBy <http://www.w3.org/ns/odrl/2/> ;
+                                    rdfs:label "Offer"@en ;
+                                    <http://www.w3.org/2004/02/skos/core#definition> "A Policy that proposes a Rule over an Asset from an assigner."@en ;
+                                    <http://www.w3.org/2004/02/skos/core#note> "An Offer Policy MUST contain at least one Permission or Prohibition rule and a Party with Assigner function (in the same Permission or Prohibition). The Offer Policy MAY contain a Party with Assignee function, but MUST not grant any privileges to that Party."@en .
+
+
+###  http://www.w3.org/ns/odrl/2/Party
+<http://www.w3.org/ns/odrl/2/Party> rdf:type owl:Class ;
+                                    rdfs:subClassOf [ rdf:type owl:Class ;
+                                                      owl:unionOf ( <http://schema.org/Organization>
+                                                                    <http://schema.org/Person>
+                                                                    <http://www.w3.org/2006/vcard/ns#Agent>
+                                                                    <http://www.w3.org/2006/vcard/ns#Individual>
+                                                                    <http://www.w3.org/2006/vcard/ns#Organization>
+                                                                    <http://xmlns.com/foaf/0.1/Agent>
+                                                                    <http://xmlns.com/foaf/0.1/Organization>
+                                                                    <http://xmlns.com/foaf/0.1/Person>
+                                                                  )
+                                                    ] ;
+                                    rdfs:isDefinedBy <http://www.w3.org/ns/odrl/2/> ;
+                                    rdfs:label "Party"@en ;
+                                    <http://www.w3.org/2004/02/skos/core#definition> "An entity or a collection of entities that undertake Roles in a Rule."@en ;
+                                    <http://www.w3.org/2004/02/skos/core#note> "The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommended to use W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]]."@en .
+
+
+###  http://www.w3.org/ns/odrl/2/Permission
+<http://www.w3.org/ns/odrl/2/Permission> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://www.w3.org/ns/odrl/2/Rule> ;
+                                         owl:disjointWith <http://www.w3.org/ns/odrl/2/Prohibition> ;
+                                         rdfs:isDefinedBy <http://www.w3.org/ns/odrl/2/> ;
+                                         rdfs:label "Permission"@en ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "The ability to perform an Action over an Asset."@en .
+
+
+###  http://www.w3.org/ns/odrl/2/Policy
+<http://www.w3.org/ns/odrl/2/Policy> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/odrl/2/Privacy
+<http://www.w3.org/ns/odrl/2/Privacy> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/odrl/2/Prohibition
+<http://www.w3.org/ns/odrl/2/Prohibition> rdf:type owl:Class ;
+                                          rdfs:subClassOf <http://www.w3.org/ns/odrl/2/Rule> ;
+                                          rdfs:isDefinedBy <http://www.w3.org/ns/odrl/2/> ;
+                                          rdfs:label "Prohibition"@en ;
+                                          <http://www.w3.org/2004/02/skos/core#definition> "The inability to perform an Action over an Asset."@en .
+
+
+###  http://www.w3.org/ns/odrl/2/Request
+<http://www.w3.org/ns/odrl/2/Request> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/odrl/2/Rule
+<http://www.w3.org/ns/odrl/2/Rule> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/odrl/2/Set
+<http://www.w3.org/ns/odrl/2/Set> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/odrl/2/Ticket
+<http://www.w3.org/ns/odrl/2/Ticket> rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Agent
+<http://xmlns.com/foaf/0.1/Agent> rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Document
+<http://xmlns.com/foaf/0.1/Document> rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Organization
+<http://xmlns.com/foaf/0.1/Organization> rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+<http://xmlns.com/foaf/0.1/Person> rdf:type owl:Class .
+
+
+###  https://w3id.org/sedimark/ontology#AIModelAsset
+:AIModelAsset rdf:type owl:Class ;
+              rdfs:subClassOf :Asset .
+
+
+###  https://w3id.org/sedimark/ontology#Agreement
+:Agreement rdf:type owl:Class ;
+           rdfs:subClassOf <http://www.w3.org/ns/odrl/2/Agreement> ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :references ;
+                             owl:allValuesFrom :Offering
+                           ] ;
+           <http://www.w3.org/2004/02/skos/core#definition> "A signed Contract." .
+
+
+###  https://w3id.org/sedimark/ontology#Asset
+:Asset rdf:type owl:Class ;
+       rdfs:subClassOf <http://www.w3.org/ns/dcat#Resource> ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasAssetQuality ;
+                         owl:allValuesFrom :AssetQuality
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :isProvidedBy ;
+                         owl:allValuesFrom :AssetProvision
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :offeredBy ;
+                         owl:allValuesFrom :Offering
+                       ] ;
+       <http://www.w3.org/2004/02/skos/core#definition> """A particular resource offered by a Provider. Assets can be further processed/enhanced by
+either the Data Processing Pipeline or the AI pipeline before being offered within a Marketplace.""" .
+
+
+###  https://w3id.org/sedimark/ontology#AssetProvision
+:AssetProvision rdf:type owl:Class ;
+                rdfs:subClassOf <http://www.w3.org/ns/dcat#Distribution> .
+
+
+###  https://w3id.org/sedimark/ontology#AssetQuality
+:AssetQuality rdf:type owl:Class ;
+              rdfs:subClassOf <http://www.w3.org/ns/dqv#QualityMeasurement> .
+
+
+###  https://w3id.org/sedimark/ontology#DataAsset
+:DataAsset rdf:type owl:Class ;
+           rdfs:subClassOf <http://www.w3.org/ns/dcat#Dataset> ,
+                           :Asset .
+
+
+###  https://w3id.org/sedimark/ontology#Offering
+:Offering rdf:type owl:Class ;
+          rdfs:subClassOf <http://www.w3.org/ns/dcat#Catalog> ,
+                          <http://www.w3.org/ns/odrl/2/Asset> ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://www.w3.org/ns/dcat#record> ;
+                            owl:someValuesFrom <http://www.w3.org/ns/dcat#CatalogRecord>
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasAsset ;
+                            owl:allValuesFrom :Asset
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasOfferingContract ;
+                            owl:allValuesFrom :OfferingContract
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :isListedBy ;
+                            owl:allValuesFrom :Self-Listing
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :isReferencedBy ;
+                            owl:allValuesFrom :Agreement
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasAsset ;
+                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Asset
+                          ] ;
+          owl:disjointWith :Self-Listing ;
+          <http://www.w3.org/2004/02/skos/core#definition> """A document (e.g. JSON-LD) that represents a set of Assets following the Marketplace
+Information Model. It is stored at the Provider domain. It includes the description of Assets and
+a reference to a Contract.""" .
+
+
+###  https://w3id.org/sedimark/ontology#OfferingContract
+:OfferingContract rdf:type owl:Class ;
+                  rdfs:subClassOf <http://www.w3.org/ns/odrl/2/Offer> ;
+                  <http://www.w3.org/2004/02/skos/core#definition> """Machine interpretable document that regulates an Offering procurement (part of the Offering
+lifecycle) and must be agreed by the two involved Participants. It should contain a list of access
+and usage policies (e.g. Open Digital Rights Language (ODRL)) that rule how the Assets
+represented within that Offering can be consumed.""" .
+
+
+###  https://w3id.org/sedimark/ontology#OfferingRecord
+:OfferingRecord rdf:type owl:Class ;
+                rdfs:subClassOf <http://www.w3.org/ns/dcat#CatalogRecord> .
+
+
+###  https://w3id.org/sedimark/ontology#OtherAsset
+:OtherAsset rdf:type owl:Class ;
+            rdfs:subClassOf :Asset .
+
+
+###  https://w3id.org/sedimark/ontology#Participant
+:Participant rdf:type owl:Class ;
+             rdfs:subClassOf <http://www.w3.org/ns/odrl/2/Party> ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasSelf-Listing ;
+                               owl:allValuesFrom :Self-Listing
+                             ] ;
+             <http://www.w3.org/2004/02/skos/core#definition> """Participants are members of a Marketplace that act either as Providers or Consumers.
+Participants are identified through a digital identity (e.g. SSI) and are represented through Self-descriptions. Participants commerce with Offerings and, as a result, exchange Assets.""" .
+
+
+###  https://w3id.org/sedimark/ontology#Self-Listing
+:Self-Listing rdf:type owl:Class ;
+              rdfs:subClassOf <http://www.w3.org/ns/dcat#Catalog> ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :belongsTo ;
+                                owl:allValuesFrom :Participant
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasOffering ;
+                                owl:allValuesFrom :Offering
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasOffering ;
+                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :Offering
+                              ] ;
+              <http://www.w3.org/2004/02/skos/core#definition> """A document (e.g. JSON-LD) that contains or references the set of Offerings from a Provider
+following the Marketplace Information Model. It is stored at the Provider domain. Self-listings
+are not searchable by definition.""" .
+
+
+###  https://w3id.org/sedimark/ontology#ServiceAsset
+:ServiceAsset rdf:type owl:Class ;
+              rdfs:subClassOf <http://www.w3.org/ns/dcat#DataService> ,
+                              :Asset .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/sedimark/vocab/sdm
+<https://w3id.org/sedimark/vocab/sdm> rdf:type owl:NamedIndividual ,
+                                               <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
+                                      <http://www.w3.org/2004/02/skos/core#hasTopConcept> <https://w3id.org/sedimark/vocab/sdm/domain> ,
+                                                                                          <https://w3id.org/sedimark/vocab/sdm/entity> ,
+                                                                                          <https://w3id.org/sedimark/vocab/sdm/property> ,
+                                                                                          <https://w3id.org/sedimark/vocab/sdm/subject> ;
+                                      rdfs:label "Smart Data Models (Scheme)" ;
+                                      rdfs:seeAlso "https://smart-data-models.github.io/data-models/"^^xsd:anyURI .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/domain
+<https://w3id.org/sedimark/vocab/sdm/domain> rdf:type owl:NamedIndividual ,
+                                                      <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                             <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                             <http://www.w3.org/2004/02/skos/core#topConceptOf> <https://w3id.org/sedimark/vocab/sdm> ;
+                                             rdfs:label "Domain (SDM)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/entity
+<https://w3id.org/sedimark/vocab/sdm/entity> rdf:type owl:NamedIndividual ,
+                                                      <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                             <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/entity> ;
+                                             <http://www.w3.org/2004/02/skos/core#topConceptOf> <https://w3id.org/sedimark/vocab/sdm> ;
+                                             rdfs:label "Entity (SDM)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property
+<https://w3id.org/sedimark/vocab/sdm/property> rdf:type owl:NamedIndividual ,
+                                                        <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                               <http://www.w3.org/2004/02/skos/core#topConceptOf> <https://w3id.org/sedimark/vocab/sdm> ;
+                                               rdfs:label "Property (SDM)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/subject
+<https://w3id.org/sedimark/vocab/sdm/subject> rdf:type owl:NamedIndividual ,
+                                                       <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                              <http://www.w3.org/2004/02/skos/core#topConceptOf> <https://w3id.org/sedimark/vocab/sdm> ;
+                                              rdfs:label "Subject (SDM)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/domain/SmartCities
+<https://w3id.org/sedimark/vocab/sdm/domain/SmartCities> rdf:type owl:NamedIndividual ,
+                                                                  <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                         <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/domain> ;
+                                                         <http://www.w3.org/2004/02/skos/core#member> <https://w3id.org/sedimark/vocab/sdm/subject/Building> ,
+                                                                                                      <https://w3id.org/sedimark/vocab/sdm/subject/Transportation> ;
+                                                         rdfs:label "Smart Cities (Domain)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/domain/SmartEnvironment
+<https://w3id.org/sedimark/vocab/sdm/domain/SmartEnvironment> rdf:type owl:NamedIndividual ,
+                                                                       <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                              <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/domain> ;
+                                                              <http://www.w3.org/2004/02/skos/core#member> <https://w3id.org/sedimark/vocab/sdm/subject/Environment> ;
+                                                              rdfs:label "Smart Enviroment (Domain)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/domain/SmartLogistics
+<https://w3id.org/sedimark/vocab/sdm/domain/SmartLogistics> rdf:type owl:NamedIndividual ,
+                                                                     <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                            <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/domain> ;
+                                                            <http://www.w3.org/2004/02/skos/core#member> <https://w3id.org/sedimark/vocab/sdm/subject/Transportation> ;
+                                                            rdfs:label "Smart Logistics (Domain)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/entity/AirQualityObserved
+<https://w3id.org/sedimark/vocab/sdm/entity/AirQualityObserved> rdf:type owl:NamedIndividual ,
+                                                                         <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                                <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/entity> ;
+                                                                <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                                rdfs:label "Air Quality Observed (Entity)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/entity/BikeHireDockingStation
+<https://w3id.org/sedimark/vocab/sdm/entity/BikeHireDockingStation> rdf:type owl:NamedIndividual ,
+                                                                             <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                                    <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/entity> ;
+                                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                                    <http://www.w3.org/2004/02/skos/core#related> <https://w3id.org/sedimark/vocab/sdm/property/availableBikeNumber> ;
+                                                                    rdfs:label "Bike Hire Docking Station (Entity)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/entity/BikeLane
+<https://w3id.org/sedimark/vocab/sdm/entity/BikeLane> rdf:type owl:NamedIndividual ,
+                                                               <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                      <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/entity> ;
+                                                      <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                      rdfs:label "Bike Lane (Entity)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/entity/Building
+<https://w3id.org/sedimark/vocab/sdm/entity/Building> rdf:type owl:NamedIndividual ,
+                                                               <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                      <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/entity> ;
+                                                      <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                      <http://www.w3.org/2004/02/skos/core#related> <https://w3id.org/sedimark/vocab/sdm/subject/Building> ;
+                                                      rdfs:label "Building (Entity)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/entity/Vehicle
+<https://w3id.org/sedimark/vocab/sdm/entity/Vehicle> rdf:type owl:NamedIndividual ,
+                                                              <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                     <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/entity> ;
+                                                     <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                     <http://www.w3.org/2004/02/skos/core#related> <https://w3id.org/sedimark/vocab/sdm/property/battery> ,
+                                                                                                   <https://w3id.org/sedimark/vocab/sdm/property/category> ,
+                                                                                                   <https://w3id.org/sedimark/vocab/sdm/property/currentTripCount> ,
+                                                                                                   <https://w3id.org/sedimark/vocab/sdm/property/ignitionStatus> ,
+                                                                                                   <https://w3id.org/sedimark/vocab/sdm/property/serviceStatus> ,
+                                                                                                   <https://w3id.org/sedimark/vocab/sdm/property/vehicleType> ;
+                                                     rdfs:label "Vehicle (Entity)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/entity/VehicleERA
+<https://w3id.org/sedimark/vocab/sdm/entity/VehicleERA> rdf:type owl:NamedIndividual ,
+                                                                 <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                        <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/entity> ;
+                                                        rdfs:label "ERA Vehicle (Entity)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/entity/trafficFlowObserved
+<https://w3id.org/sedimark/vocab/sdm/entity/trafficFlowObserved> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                                 <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/entity> ;
+                                                                 <http://www.w3.org/2004/02/skos/core#related> <https://w3id.org/sedimark/vocab/sdm/property/averageVehicleSpeed> ;
+                                                                 rdfs:label "Traffic Flow Observed (Entity)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property/availabilityRestriction
+<https://w3id.org/sedimark/vocab/sdm/property/availabilityRestriction> rdf:type owl:NamedIndividual ,
+                                                                                <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                                       <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/property> ;
+                                                                       <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                                       <http://www.w3.org/2004/02/skos/core#related> <https://w3id.org/sedimark/vocab/sdm/entity/BikeHireDockingStation> ;
+                                                                       rdfs:label "Availability Restriction (Property)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property/availableBikeNumber
+<https://w3id.org/sedimark/vocab/sdm/property/availableBikeNumber> rdf:type owl:NamedIndividual ,
+                                                                            <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                                   <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/property> ;
+                                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                                   <http://www.w3.org/2004/02/skos/core#related> <https://w3id.org/sedimark/vocab/sdm/entity/BikeHireDockingStation> ;
+                                                                   rdfs:label "Available Bike Number (Property)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property/averageVehicleSpeed
+<https://w3id.org/sedimark/vocab/sdm/property/averageVehicleSpeed> rdf:type owl:NamedIndividual ,
+                                                                            <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                                   <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/property> ;
+                                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                                   <http://www.w3.org/2004/02/skos/core#related> <https://w3id.org/sedimark/vocab/sdm/entity/trafficFlowObserved> ;
+                                                                   rdfs:label "Average Vehicle Speed (Property)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property/battery
+<https://w3id.org/sedimark/vocab/sdm/property/battery> rdf:type owl:NamedIndividual ,
+                                                                <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                       <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/property> ;
+                                                       <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                       rdfs:label "Battery (Property)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property/category
+<https://w3id.org/sedimark/vocab/sdm/property/category> rdf:type owl:NamedIndividual ,
+                                                                 <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                        <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/property> ;
+                                                        <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                        <http://www.w3.org/2004/02/skos/core#related> <https://w3id.org/sedimark/vocab/sdm/entity/Building> ,
+                                                                                                      <https://w3id.org/sedimark/vocab/sdm/entity/Vehicle> ;
+                                                        rdfs:label "Category (Property)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property/congested
+<https://w3id.org/sedimark/vocab/sdm/property/congested> rdf:type owl:NamedIndividual ,
+                                                                  <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                         <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/property> ;
+                                                         <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                         rdfs:label "Congested (Property)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property/currentTripCount
+<https://w3id.org/sedimark/vocab/sdm/property/currentTripCount> rdf:type owl:NamedIndividual ,
+                                                                         <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                                <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/property> ;
+                                                                <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                                rdfs:label "Current Trip Count (Property)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property/freeSlotNumber
+<https://w3id.org/sedimark/vocab/sdm/property/freeSlotNumber> rdf:type owl:NamedIndividual ,
+                                                                       <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                              <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/property> ;
+                                                              <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                              <http://www.w3.org/2004/02/skos/core#related> <https://w3id.org/sedimark/vocab/sdm/entity/BikeHireDockingStation> ;
+                                                              rdfs:label "Free Slot Number (Property)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property/ignitionStatus
+<https://w3id.org/sedimark/vocab/sdm/property/ignitionStatus> rdf:type owl:NamedIndividual ,
+                                                                       <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                              <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/property> ;
+                                                              <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                              rdfs:label "Ignition Status (Property)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property/intensity
+<https://w3id.org/sedimark/vocab/sdm/property/intensity> rdf:type owl:NamedIndividual ,
+                                                                  <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                         <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/property> ;
+                                                         <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                         <http://www.w3.org/2004/02/skos/core#related> <https://w3id.org/sedimark/vocab/sdm/entity/trafficFlowObserved> ;
+                                                         rdfs:label "Intensity (Property)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property/occupancy
+<https://w3id.org/sedimark/vocab/sdm/property/occupancy> rdf:type owl:NamedIndividual ,
+                                                                  <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                         <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/property> ;
+                                                         <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                         <http://www.w3.org/2004/02/skos/core#related> <https://w3id.org/sedimark/vocab/sdm/entity/trafficFlowObserved> ;
+                                                         rdfs:label "Occupancy (Property)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property/peopleOccupancy
+<https://w3id.org/sedimark/vocab/sdm/property/peopleOccupancy> rdf:type owl:NamedIndividual ,
+                                                                        <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                               <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                               <http://www.w3.org/2004/02/skos/core#related> <https://w3id.org/sedimark/vocab/sdm/subject/Building> ;
+                                                               rdfs:label "People Occupancy (Property)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property/serviceStatus
+<https://w3id.org/sedimark/vocab/sdm/property/serviceStatus> rdf:type owl:NamedIndividual ,
+                                                                      <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                             <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/property> ;
+                                                             <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm/property> ;
+                                                             rdfs:label "Service Status (Property)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property/totalSlotNumber
+<https://w3id.org/sedimark/vocab/sdm/property/totalSlotNumber> rdf:type owl:NamedIndividual ,
+                                                                        <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                               <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/property> ;
+                                                               <http://www.w3.org/2004/02/skos/core#related> <https://w3id.org/sedimark/vocab/sdm/entity/BikeHireDockingStation> ;
+                                                               rdfs:label "Total Slot Number (Property)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/property/vehicleType
+<https://w3id.org/sedimark/vocab/sdm/property/vehicleType> rdf:type owl:NamedIndividual ,
+                                                                    <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                           <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                           rdfs:label "Vehicle Type (Property)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/subject/Building
+<https://w3id.org/sedimark/vocab/sdm/subject/Building> rdf:type owl:NamedIndividual ,
+                                                                <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                       <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/subject> ;
+                                                       <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                       rdfs:label "Building (Subject)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/subject/ERA
+<https://w3id.org/sedimark/vocab/sdm/subject/ERA> rdf:type owl:NamedIndividual ,
+                                                           <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                  <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/subject> ;
+                                                  <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                  <http://www.w3.org/2004/02/skos/core#member> <https://w3id.org/sedimark/vocab/sdm/entity/VehicleERA> ;
+                                                  rdfs:label "ERA (Subject)" ;
+                                                  rdfs:seeAlso "https://data-interop.era.europa.eu/era-vocabulary/"^^xsd:anyURI ;
+                                                  <http://www.w3.org/2004/02/skos/core#definition> "European Union Agency for Railways (2024) ERA Ontology" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/subject/Environment
+<https://w3id.org/sedimark/vocab/sdm/subject/Environment> rdf:type owl:NamedIndividual ,
+                                                                   <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                          <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/subject> ;
+                                                          <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/sedimark/vocab/sdm> ;
+                                                          rdfs:label "Environment (Subject)" .
+
+
+###  https://w3id.org/sedimark/vocab/sdm/subject/Transportation
+<https://w3id.org/sedimark/vocab/sdm/subject/Transportation> rdf:type owl:NamedIndividual ,
+                                                                      <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                             <http://www.w3.org/2004/02/skos/core#broader> <https://w3id.org/sedimark/vocab/sdm/subject> ;
+                                                             <http://www.w3.org/2004/02/skos/core#member> <https://w3id.org/sedimark/vocab/sdm/entity/BikeHireDockingStation> ;
+                                                             rdfs:label "Transportation (Subject)" .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+<https://schema.org/alternateName> rdfs:comment "An alias for the item." ;
+                                   rdfs:label "alternateName" ;
+                                   <https://schema.org/domainIncludes> <https://schema.org/Thing> ;
+                                   <https://schema.org/rangeIncludes> <https://schema.org/Text> .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AIModelAsset
+                :DataAsset
+                :OtherAsset
+                :ServiceAsset
+              )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://w3id.org/sedimark/vocab/sdm/entity/Building>
+                        <https://w3id.org/sedimark/vocab/sdm/subject/Building>
+                      )
+] .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/
