@@ -194,6 +194,27 @@ The server exposes the following endpoints for interacting with the SEDIMARK cat
   ```
 - **Content Type for SPARQL Queries:** When sending queries via POST, use `Content-Type: application/sparql-query`
 
+N.B: Offerings are modelled as individual named graphs, and so queries must use the ```GRAPH``` keyword. If a query about a specific Offering is required, the ```FROM NAMED``` keyword should be used. All named graphs URIs in this catalogue are the same as the URIs of the Offering instances.
+
+```sparql
+prefix sedi: <https://w3id.org/sedimark/ontology#>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix xml: <http://www.w3.org/XML/1998/namespace>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix dcat: <http://www.w3.org/ns/dcat#>
+prefix dct: <http://purl.org/dc/terms/>
+SELECT ?offering ?asset
+# FROM NAMED <http://example.org/offering_164>
+WHERE {
+  GRAPH ?g {
+    ?offering a <https://w3id.org/sedimark/ontology#Offering> .
+    ?offering <https://w3id.org/sedimark/ontology#hasAsset> ?asset .
+  }
+}
+```
+
 ### 6. Test Endpoint
 - **URL:** `http://localhost:3030/catalogue/test`
 - **Method:** GET
