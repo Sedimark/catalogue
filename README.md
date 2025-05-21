@@ -190,13 +190,7 @@ The server exposes the following endpoints for interacting with the SEDIMARK cat
 - **Description:** Standard SPARQL 1.1 Protocol endpoints for querying and updating data
 - **Example Query:**
   ```bash
-  curl -H "Accept: application/json" --data-urlencode "query=SELECT ?offering ?asset
-WHERE {
-  GRAPH ?g {
-    ?offering a <https://w3id.org/sedimark/ontology#Offering> .
-    ?offering <https://w3id.org/sedimark/ontology#hasAsset> ?asset .
-  }
-} " http://localhost:3030/catalogue/sparql
+  curl -H "Accept: application/json" --data-urlencode "query=SELECT ?offering ?asset WHERE { GRAPH ?g { ?offering a <https://w3id.org/sedimark/ontology#Offering> . ?offering <https://w3id.org/sedimark/ontology#hasAsset> ?asset . }}" http://localhost:3030/catalogue/sparql
   ```
 - **Content Type for SPARQL Queries:** When sending queries via POST, use `Content-Type: application/sparql-query`
 
