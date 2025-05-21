@@ -5,7 +5,7 @@ This project implements a customized Jena Fuseki server that manages SEDIMARK of
 ## Project Structure
 
 ```
-jena-fuseki-server
+catalogue
 ├── src
 │   └── main
 │       ├── java
