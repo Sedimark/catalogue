@@ -39,8 +39,6 @@ With TDB2 persistent storage:
 docker run -d -p 3030:3030 -v ~/sedimark-data:/data -e STORAGE_TYPE=tdb --name sedimark-catalogue sedimark/catalogue-server:1.0
 ```
 
-# ...rest of the file remains unchanged...
-
 Loading example data:
 
 ```bash
