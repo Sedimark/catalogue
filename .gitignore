@@ -1,3 +1,121 @@
 # Env files
-.env 
+.env
 .env.*
+
+### Java ###
+# Compiled class files
+*.class
+
+# Log files
+*.log
+log/
+logs/
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs
+hs_err_pid*
+replay_pid*
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+.mvn/wrapper/maven-wrapper.jar
+
+### IDE Files ###
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+# VS Code
+.vscode/
+.code-workspace
+
+### Fuseki & TDB Files ###
+# Fuseki database files
+/run/
+/sedimark-tdb/
+/apache-jena-fuseki*/
+/fuseki-server
+/fuseki*.jar
+/fuseki.service
+/*.ttl
+/shiro.ini
+
+# TDB2 files that may be created during development
+/data/
+/tdb2/
+*.idn
+*.dat
+*.jrnl
+
+# Docker
+.env
+*.env.local
+
+# OS specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Application specific
+config.properties
+application.properties
+application.yml
+application-*.yml
+application-*.properties
+config.json
+
+# Debug files
+*.hprof
+*.pyc
+*.swp
+*.bak
+
+# Temporary files
+*~
+tmp/
+temp/
+.temp/
+.tmp/

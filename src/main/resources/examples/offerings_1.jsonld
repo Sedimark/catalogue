@@ -1,0 +1,391 @@
+{
+    "@graph": [
+        {
+            "@id": "ex:assetProvision_15",
+            "dcat:endpointURL": {
+                "@value": "https://sedimark.egm.io/ngsi-ld/v2/",
+                "@type": "xsd:anyURI"
+            },
+            "@type": "sedimark:AssetProvision"
+        },
+        {
+            "@id": "ex:participant_19",
+            "schema:email": {
+                "@id": "mailto:info@surrey.ac.uk"
+            },
+            "schema:accountId": "participant-bc1f3954",
+            "@type": "sedimark:Participant"
+        },
+        {
+            "@id": "ex:assetQuality_4",
+            "http://www.w3.org/ns/dqv#computedOn": {
+                "@id": "ex:asset_2"
+            },
+            "@type": "sedimark:AssetQuality"
+        },
+        {
+            "@id": "ex:asset_2",
+            "dcterms:title": "Building Data Asset",
+            "dcterms:theme": {
+                "@id": "sdm-vocab:sdm/entity/Building"
+            },
+            "dcterms:spatial": {
+                "@value": "http://sws.geonames.org/2673730/",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:keyword": [
+                "building",
+                "category",
+                "SEDIMARK"
+            ],
+            "sedimark:isProvidedBy": {
+                "@id": "ex:assetProvision_3"
+            },
+            "prov:generatedBy": {
+                "@value": "2025-05-16T15:32:33.288224597Z",
+                "@type": "xsd:dateTime"
+            },
+            "dcterms:identifier": "asset-id-ce157286-4488-48de-b680-91f4e4433eed",
+            "dcterms:description": "A dataset containing building information.",
+            "@type": "sedimark:Asset",
+            "sedimark:hasAssetQuality": {
+                "@id": "ex:assetQuality_4"
+            },
+            "dcterms:issued": {
+                "@value": "2025-05-16T15:32:33.288224597Z",
+                "@type": "xsd:dateTime"
+            },
+            "dcat:isVersionOf": {
+                "@value": "2025-04-22T15:32:33.288515357Z",
+                "@type": "xsd:dateTime"
+            },
+            "sedimark:offeredBy": {
+                "@id": "ex:offering_1"
+            },
+            "dcterms:creator": "SEDIMARK Example Generator"
+        },
+        {
+            "@id": "ex:contract_20",
+            "odrl:obligation": [
+                {
+                    "@id": "ex:obligation_24"
+                },
+                {
+                    "@id": "ex:obligation_23"
+                }
+            ],
+            "odrl:duty": {
+                "@id": "ex:duty_22"
+            },
+            "odrl:permission": {
+                "@id": "ex:permission_21"
+            },
+            "@type": "sedimark:OfferingContract"
+        },
+        {
+            "@id": "ex:obligation_24",
+            "@type": "odrl:Obligation"
+        },
+        {
+            "@id": "ex:obligation_23",
+            "@type": "odrl:Obligation"
+        },
+        {
+            "@id": "ex:duty_22",
+            "@type": "odrl:Duty"
+        },
+        {
+            "@id": "ex:permission_21",
+            "@type": "odrl:Permission"
+        },
+        {
+            "@id": "ex:assetProvision_3",
+            "dcat:endpointURL": {
+                "@value": "https://sedimark.tlmat.unican.es/ngsi-ld/v2/",
+                "@type": "xsd:anyURI"
+            },
+            "@type": "sedimark:AssetProvision"
+        },
+        {
+            "@id": "ex:asset_11",
+            "sedimark:hasAssetQuality": {
+                "@id": "ex:assetQuality_13"
+            },
+            "dcat:keyword": [
+                "SEDIMARK",
+                "category",
+                "building"
+            ],
+            "dcterms:theme": {
+                "@id": "sdm-vocab:sdm/entity/Building"
+            },
+            "@type": "sedimark:Asset",
+            "sedimark:isProvidedBy": {
+                "@id": "ex:assetProvision_12"
+            },
+            "dcterms:issued": {
+                "@value": "2025-05-16T15:32:33.289461102Z",
+                "@type": "xsd:dateTime"
+            },
+            "dcterms:creator": "SEDIMARK Example Generator",
+            "dcterms:title": "Building Data Asset",
+            "dcterms:spatial": {
+                "@value": "http://sws.geonames.org/2673730/",
+                "@type": "xsd:anyURI"
+            },
+            "dcterms:identifier": "asset-id-cb371b74-9190-4791-849a-ce85f931020b",
+            "prov:generatedBy": {
+                "@value": "2025-05-16T15:32:33.289461102Z",
+                "@type": "xsd:dateTime"
+            },
+            "dcterms:description": "A dataset containing building information.",
+            "sedimark:offeredBy": {
+                "@id": "ex:offering_1"
+            }
+        },
+        {
+            "@id": "ex:assetQuality_13",
+            "http://www.w3.org/ns/dqv#computedOn": {
+                "@id": "ex:asset_11"
+            },
+            "@type": "sedimark:AssetQuality"
+        },
+        {
+            "@id": "ex:assetProvision_12",
+            "dcat:endpointURL": {
+                "@value": "https://sedimark.egm.io/ngsi-ld/v2/",
+                "@type": "xsd:anyURI"
+            },
+            "@type": "sedimark:AssetProvision"
+        },
+        {
+            "@id": "ex:offering_1",
+            "sedimark:hasAsset": [
+                {
+                    "@id": "ex:asset_14"
+                },
+                {
+                    "@id": "ex:asset_11"
+                },
+                {
+                    "@id": "ex:asset_8"
+                },
+                {
+                    "@id": "ex:asset_5"
+                },
+                {
+                    "@id": "ex:asset_2"
+                }
+            ],
+            "dcterms:title": "Offering for Building",
+            "sedimark:hasOfferingContract": {
+                "@id": "ex:contract_20"
+            },
+            "dcterms:description": "This offering provides access to Building data and services.",
+            "dcterms:license": "CC-BY-4.0",
+            "sedimark:isListedBy": {
+                "@id": "ex:selfListing_17"
+            },
+            "@type": "sedimark:Offering",
+            "dcat:themeTaxonomy": {
+                "@id": "sdm-vocab:sdm"
+            }
+        },
+        {
+            "@id": "ex:assetQuality_7",
+            "http://www.w3.org/ns/dqv#computedOn": {
+                "@id": "ex:asset_5"
+            },
+            "@type": "sedimark:AssetQuality"
+        },
+        {
+            "@id": "ex:asset_5",
+            "dcterms:description": "A dataset containing building information.",
+            "dcat:keyword": [
+                "category",
+                "SEDIMARK",
+                "building"
+            ],
+            "@type": "sedimark:Asset",
+            "sedimark:hasAssetQuality": {
+                "@id": "ex:assetQuality_7"
+            },
+            "sedimark:isProvidedBy": {
+                "@id": "ex:assetProvision_6"
+            },
+            "dcterms:creator": "SEDIMARK Example Generator",
+            "sedimark:offeredBy": {
+                "@id": "ex:offering_1"
+            },
+            "dcterms:title": "Building Data Asset",
+            "dcat:isVersionOf": {
+                "@value": "2025-05-16T15:32:33.288915131Z",
+                "@type": "xsd:dateTime"
+            },
+            "dcterms:spatial": {
+                "@value": "http://sws.geonames.org/2673730/",
+                "@type": "xsd:anyURI"
+            },
+            "dcterms:identifier": "asset-id-c75361dd-5ff1-4e5d-a6bb-33790ebdce95",
+            "dcterms:theme": {
+                "@id": "sdm-vocab:sdm/entity/Building"
+            },
+            "dcterms:issued": {
+                "@value": "2025-05-16T15:32:33.288807081Z",
+                "@type": "xsd:dateTime"
+            },
+            "prov:generatedBy": {
+                "@value": "2025-05-16T15:32:33.288807081Z",
+                "@type": "xsd:dateTime"
+            }
+        },
+        {
+            "@id": "ex:assetProvision_6",
+            "dcat:endpointURL": {
+                "@value": "https://sedimark.eviden.com/ngsi-ld/v2/",
+                "@type": "xsd:anyURI"
+            },
+            "@type": "sedimark:AssetProvision"
+        },
+        {
+            "@id": "ex:asset_14",
+            "dcterms:theme": {
+                "@id": "sdm-vocab:sdm/entity/Building"
+            },
+            "sedimark:hasAssetQuality": {
+                "@id": "ex:assetQuality_16"
+            },
+            "dcterms:creator": "SEDIMARK Example Generator",
+            "dcat:keyword": [
+                "category",
+                "building",
+                "SEDIMARK"
+            ],
+            "@type": "sedimark:Asset",
+            "prov:generatedBy": {
+                "@value": "2025-05-16T15:32:33.289916590Z",
+                "@type": "xsd:dateTime"
+            },
+            "sedimark:offeredBy": {
+                "@id": "ex:offering_1"
+            },
+            "dcterms:issued": {
+                "@value": "2025-05-16T15:32:33.289916590Z",
+                "@type": "xsd:dateTime"
+            },
+            "dcterms:description": "A dataset containing building information.",
+            "sedimark:isProvidedBy": {
+                "@id": "ex:assetProvision_15"
+            },
+            "dcterms:title": "Building Data Asset",
+            "dcterms:identifier": "asset-id-224dbfe1-987c-48e9-8704-73d1b7a6ed2b",
+            "dcterms:spatial": {
+                "@value": "http://sws.geonames.org/2673730/",
+                "@type": "xsd:anyURI"
+            }
+        },
+        {
+            "@id": "ex:assetQuality_16",
+            "http://www.w3.org/ns/dqv#computedOn": {
+                "@id": "ex:asset_14"
+            },
+            "@type": "sedimark:AssetQuality"
+        },
+        {
+            "@id": "ex:assetQuality_10",
+            "http://www.w3.org/ns/dqv#computedOn": {
+                "@id": "ex:asset_8"
+            },
+            "@type": "sedimark:AssetQuality"
+        },
+        {
+            "@id": "ex:asset_8",
+            "sedimark:isProvidedBy": {
+                "@id": "ex:assetProvision_9"
+            },
+            "dcterms:title": "Building Data Asset",
+            "dcterms:identifier": "asset-id-6c852dee-2976-45b7-9c17-09c7dce4319c",
+            "dcterms:description": "A dataset containing building information.",
+            "dcat:keyword": [
+                "category",
+                "SEDIMARK",
+                "building"
+            ],
+            "dcterms:issued": {
+                "@value": "2025-05-16T15:32:33.289209938Z",
+                "@type": "xsd:dateTime"
+            },
+            "dcterms:theme": {
+                "@id": "sdm-vocab:sdm/entity/Building"
+            },
+            "sedimark:hasAssetQuality": {
+                "@id": "ex:assetQuality_10"
+            },
+            "sedimark:offeredBy": {
+                "@id": "ex:offering_1"
+            },
+            "dcterms:creator": "SEDIMARK Example Generator",
+            "dcterms:spatial": {
+                "@value": "http://sws.geonames.org/2673730/",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:isVersionOf": {
+                "@value": "2025-04-28T15:32:33.289320208Z",
+                "@type": "xsd:dateTime"
+            },
+            "@type": "sedimark:Asset",
+            "prov:generatedBy": {
+                "@value": "2025-05-16T15:32:33.289209938Z",
+                "@type": "xsd:dateTime"
+            }
+        },
+        {
+            "@id": "ex:assetProvision_9",
+            "dcat:endpointURL": {
+                "@value": "https://sedimark.surrey.ac.uk/ngsi-ld/v2/",
+                "@type": "xsd:anyURI"
+            },
+            "@type": "sedimark:AssetProvision"
+        },
+        {
+            "@id": "ex:selfListing_17",
+            "sedimark:belongsTo": {
+                "@id": "ex:participant_19"
+            },
+            "dcat:landingPage": {
+                "@id": "ex:landingPage_18"
+            },
+            "dcterms:modified": {
+                "@value": "2025-05-16T15:32:33.290829365Z",
+                "@type": "xsd:dateTime"
+            },
+            "dcterms:issued": {
+                "@value": "2025-04-29T15:32:33.290767239Z",
+                "@type": "xsd:dateTime"
+            },
+            "dcterms:description": "Self-listing containing information about the offering_1 offering.",
+            "dcterms:title": "Self-Listing for Offering offering_1",
+            "sedimark:hasOffering": {
+                "@id": "ex:offering_1"
+            },
+            "@type": "sedimark:Self-Listing"
+        },
+        {
+            "@id": "ex:landingPage_18",
+            "@type": "http://xmlns.com/foaf/0.1/Document"
+        }
+    ],
+    "@context": {
+        "schema": "https://schema.org/",
+        "ex": "http://example.org/",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "odrl": "http://www.w3.org/ns/odrl/2/",
+        "sdm-vocab": "https://w3id.org/sedimark/vocab/",
+        "prov": "http://www.w3.org/ns/prov#",
+        "sedimark": "https://w3id.org/sedimark/ontology#"
+    }
+}
