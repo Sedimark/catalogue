@@ -15,6 +15,8 @@ spec:
       labels:
         app: ${CATALOGUE_APP_NAME}
     spec:
+      imagePullSecrets:
+      - name: docker-registry
       containers:
         - name: ${CATALOGUE_APP_NAME}
           image: ${CATALOGUE_DOCKER_REGISTRY}:${CATALOGUE_IMAGETAG}
@@ -22,6 +24,9 @@ spec:
           ports:
             - containerPort: 3030
               name: catalogue
+          env:
+            - name: STORAGE_TYPE
+              value: "tdb"
           envFrom:
             - secretRef:
                 name: ${CATALOGUE_APP_NAME}-secret

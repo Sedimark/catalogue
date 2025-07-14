@@ -9,6 +9,7 @@ export STORAGE_CLASS="nfs-storageclass" # the StorageClass used in your cluster
 export CATALOGUE_APP_NAME="jena-fuseki" # name of the application
 export CATALOGUE_NAMESPACE="catalogue" # namespace where the application will be deployed
 export CATALOGUE_DOCKER_REGISTRY="stain/jena-fuseki" # the Docker registry where the image is stored
+export DOCKER_REGISTRY_CREDENTIALS=$(echo '{"auths":{"docker_registry_path":{"password":"","username":""}}}' | base64 -w 0) # the credentials for the Docker registry, base64 encoded, if needed
 export CATALOGUE_IMAGETAG="latest" # the tag of the image
 export CATALOGUE_ADMIN_PASSWORD="your base64 encoded password" # the password for the admin user
 ```
@@ -26,4 +27,3 @@ kubectl port-forward svc/jena-fuseki 3030:3030 -n catalogue
 ```
 
 Then, you can access the application at `http://localhost:3030/`.
-
