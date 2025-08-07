@@ -28,8 +28,8 @@ replay_pid*
 
 ### Maven ###
 target/*
-!target/catalogue-1.0.jar
-!target/catalogue-1.0-jar-with-dependencies.jar
+# !target/catalogue-1.0.jar
+# !target/catalogue-1.0-jar-with-dependencies.jar
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -118,7 +118,3 @@ temp/
 .temp/
 .tmp/
 
-# Exceptions
-
-# # Allow specific JAR file in target
-# target/*
