@@ -27,7 +27,7 @@ hs_err_pid*
 replay_pid*
 
 ### Maven ###
-target/*
+target/
 # !target/catalogue-1.0.jar
 # !target/catalogue-1.0-jar-with-dependencies.jar
 pom.xml.tag
