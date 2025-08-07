@@ -24,7 +24,7 @@ LABEL org.opencontainers.image.licenses="EUPL-1.2"
 WORKDIR /app
 
 # Copy the built JAR from the build stage
-COPY --from=build /build/target/catalogue-1.0-jar-with-dependencies.jar /app/sedimark-catalogue-server.jar
+COPY --from=build /build/target/catalogue-1.0.jar /app/sedimark-catalogue-server.jar
 
 # Create a directory for TDB2 storage
 RUN mkdir -p /data/sedimark-tdb
