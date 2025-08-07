@@ -1,4 +1,17 @@
-# Use Java 21 as the base image
+
+# --- Build Stage ---
+FROM maven:3.9.4-eclipse-temurin-21 AS build
+
+WORKDIR /build
+
+# Copy Maven project files
+COPY ../../pom.xml ./
+COPY ../../src ./src
+
+# Build the JAR file (skip tests for speed, remove if you want tests)
+RUN mvn clean package -DskipTests
+
+# --- Runtime Stage ---
 FROM eclipse-temurin:21-jdk
 
 # Labels for image metadata
@@ -10,8 +23,8 @@ LABEL org.opencontainers.image.licenses="EUPL-1.2"
 # Set working directory
 WORKDIR /app
 
-# Copy the application JAR file
-COPY target/catalogue-1.0-jar-with-dependencies.jar /app/sedimark-catalogue-server.jar
+# Copy the built JAR from the build stage
+COPY --from=build /build/target/catalogue-1.0-jar-with-dependencies.jar /app/sedimark-catalogue-server.jar
 
 # Create a directory for TDB2 storage
 RUN mkdir -p /data/sedimark-tdb

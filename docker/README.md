@@ -2,24 +2,25 @@
 
 ## Usage Instructions
 
+
 ### Building the Docker Image
 
-From the project root directory:
+From the project root directory (recommended):
 
 ```bash
-# Using -f to specify Dockerfile in subdirectory
 docker build -f docker/Dockerfile -t sedimark/catalogue-server:1.0 .
 ```
 
-Alternative approaches:
+This command will build the Docker image using the multi-stage Dockerfile. The JAR will be built inside the container, so you do not need to build it locally first.
+
+Alternatively, you can build from the `docker` directory:
 
 ```bash
-# Change to the docker directory first
 cd docker
 docker build -t sedimark/catalogue-server:1.0 ..
 ```
 
-Or using Docker Compose (if you have a docker-compose.yml file):
+Or using Docker Compose (if you have a `docker-compose.yml` file):
 
 ```bash
 docker-compose build
