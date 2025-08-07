@@ -61,17 +61,17 @@ catalogue
    
    In-memory storage (default):
    ```bash
-   java -jar target/catalogue-1.0-jar-with-dependencies.jar
+   java -jar target/catalogue-1.0.jar
    ```
    
    Persistent TDB storage:
    ```bash
-   java -jar target/catalogue-1.0-jar-with-dependencies.jar --tdb
+   java -jar target/catalogue-1.0.jar --tdb
    ```
    
    With example data:
    ```bash
-   java -jar target/catalogue-1.0-jar-with-dependencies.jar --load-examples
+   java -jar target/catalogue-1.0.jar --load-examples
    ```
 
 4. **Command Line Options**
