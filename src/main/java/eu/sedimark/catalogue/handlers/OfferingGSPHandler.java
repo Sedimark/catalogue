@@ -53,7 +53,6 @@ public class OfferingGSPHandler implements ActionProcessor { // Implement, don't
     private static final String SEDIMARK_NS = "https://w3id.org/sedimark/ontology#";
     private static final String OFFERING_CLASS = SEDIMARK_NS + "Offering";
 
-
     /**
      * Constructor
      */
@@ -550,57 +549,59 @@ public class OfferingGSPHandler implements ActionProcessor { // Implement, don't
      * Store the extracted offering graphs in the dataset with enhanced prefix
      * handling
      */
-    private void storeOfferingGraphs(List<NamedSubgraph> namedGraphs) throws IOException {
-        dataset.begin(ReadWrite.WRITE);
-        try {
-            for (NamedSubgraph graph : namedGraphs) {
-                String graphName = graph.getGraphName();
-                Model modelToStore = graph.getModel();
+   private void storeOfferingGraphs(List<NamedSubgraph> namedGraphs) throws IOException {
+    dataset.begin(ReadWrite.WRITE);
+    try {
+        for (NamedSubgraph graph : namedGraphs) {
+            String graphName = graph.getGraphName();
+            Model modelToStore = graph.getModel();
 
-                // Save prefixes for debugging
-                Map<String, String> prefixesBeforeStorage = new HashMap<>(modelToStore.getNsPrefixMap());
-
-                // Check if the graph already exists and remove it
-                if (dataset.containsNamedModel(graphName)) {
-                    logger.info("Replacing existing named graph: {}", graphName);
-                    dataset.removeNamedModel(graphName);
-                }
-
-                // TDB2 sometimes discards prefixes, so let's work around that
-
-                // 1. First, add the model to the dataset
-                dataset.addNamedModel(graphName, modelToStore);
-
-                // 2. Then, retrieve the model back and check if prefixes are preserved
-                Model storedModel = dataset.getNamedModel(graphName);
-                Map<String, String> storedPrefixes = storedModel.getNsPrefixMap();
-
-                logger.info("Graph {} stored with {} statements. Prefixes before: {}, after: {}",
-                        graphName, storedModel.size(), prefixesBeforeStorage.size(), storedPrefixes.size());
-
-                // 3. If prefixes were lost, try to add them back explicitly
-                if (storedPrefixes.size() < prefixesBeforeStorage.size()) {
-                    logger.warn("Some prefixes were lost during storage. Attempting to restore them.");
-                    storedModel.setNsPrefixes(prefixesBeforeStorage);
-
-                    // This forces TDB2 to update the stored prefixes
-                    dataset.replaceNamedModel(graphName, storedModel);
-
-                    // Verify again
-                    Model verifiedModel = dataset.getNamedModel(graphName);
-                    logger.info("After prefix restoration attempt: {} prefixes",
-                            verifiedModel.getNsPrefixMap().size());
-                }
+            // Remove existing graph if present
+            if (dataset.containsNamedModel(graphName)) {
+                logger.info("Replacing existing named graph: {}", graphName);
+                dataset.removeNamedModel(graphName);
             }
-            dataset.commit();
-        } catch (Exception e) {
-            dataset.abort();
-            throw new IOException("Error storing named graphs", e);
-        } finally {
-            dataset.end();
+
+            // Store the model (prefixes will not be persisted, but triples will)
+            dataset.addNamedModel(graphName, modelToStore);
+
+            Model storedModel = dataset.getNamedModel(graphName);
+            logger.info("Graph {} stored with {} statements.", graphName, storedModel.size());
         }
+        dataset.commit();
+    } catch (Exception e) {
+        dataset.abort();
+        throw new IOException("Error storing named graphs", e);
+    } finally {
+        dataset.end();
     }
 
+    // Post-commit check (optional, for debugging)
+    dataset.begin(ReadWrite.READ);
+    try {
+        for (NamedSubgraph graph : namedGraphs) {
+            String graphName = graph.getGraphName();
+            if (dataset.containsNamedModel(graphName)) {
+                Model storedModel = dataset.getNamedModel(graphName);
+                logger.info("Post-commit check: Graph {} exists with {} statements.", graphName, storedModel.size());
+            } else {
+                logger.warn("Post-commit check: Graph {} does NOT exist in dataset!", graphName);
+            }
+        }
+    } finally {
+        dataset.end();
+    }
+
+    // List all graph names after commit (optional, for debugging)
+    dataset.begin(ReadWrite.READ);
+    try {
+        List<String> graphNames = new ArrayList<>();
+        dataset.listNames().forEachRemaining(graphNames::add);
+        logger.info("All graph names after commit: {}", graphNames);
+    } finally {
+        dataset.end();
+    }
+}
     /**
      * Determine the output format based on Accept header
      */

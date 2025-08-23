@@ -65,7 +65,7 @@ public class CatalogueServerLauncher {
         }
 
         // Create handlers
-        TestHandler testHandler = new TestHandler();
+        // TestHandler testHandler = new TestHandler();
         OfferingGSPHandler offeringHandler = new OfferingGSPHandler(dataset);
         OfferingListingService graphListingService = new OfferingListingService(dataset, SEDIMARK_OFFERING);
 
@@ -74,7 +74,7 @@ public class CatalogueServerLauncher {
                 .port(arguments.port)
                 .add("/catalogue", dataset) // Mount dataset at /catalogue endpoint
                 .addProcessor("/catalogue/manager", offeringHandler) // Use custom handler for GSP
-                .addProcessor("/catalogue/test", testHandler) // Test handler on a different endpoint
+                // .addProcessor("/catalogue/test", testHandler) // Test handler on a different endpoint
                 .addServlet("/catalogue/graphs", graphListingService) // graph listing service
                 .build();
 

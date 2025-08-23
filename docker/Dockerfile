@@ -40,8 +40,8 @@ ENV DEBUG=false
 EXPOSE ${SERVER_PORT}
 
 # Add a healthcheck
-HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
-    CMD curl -f http://localhost:${SERVER_PORT}/catalogue/test || exit 1
+#HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
+#    CMD curl -f http://localhost:${SERVER_PORT}/catalogue/test || exit 1
 
 # Create a volume for persistent data
 VOLUME /data
