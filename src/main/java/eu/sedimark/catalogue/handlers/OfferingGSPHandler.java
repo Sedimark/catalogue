@@ -232,6 +232,9 @@ public class OfferingGSPHandler implements ActionProcessor { // Implement, don't
 
                         action.getResponse().setStatus(HttpServletResponse.SC_OK);
 
+                        model.setNsPrefixes(loadOntologyPrefixes());
+
+
                         // Write the model in the requested RDF format
                         RDFDataMgr.write(action.getResponseOutputStream(), model, outputLang);
                     }
@@ -696,4 +699,23 @@ public class OfferingGSPHandler implements ActionProcessor { // Implement, don't
             return model;
         }
     }
+
+    private static Map<String, String> ontologyPrefixes = null;
+
+private static Map<String, String> loadOntologyPrefixes() {
+    if (ontologyPrefixes != null) return ontologyPrefixes;
+    ontologyPrefixes = new HashMap<>();
+    try {
+        Model ontologyModel = ModelFactory.createDefaultModel();
+        // Adjust path if needed
+        InputStream in = OfferingGSPHandler.class.getResourceAsStream("/ontology/sedimark-ontology.ttl");
+        if (in != null) {
+            ontologyModel.read(in, null, "TURTLE");
+            ontologyPrefixes.putAll(ontologyModel.getNsPrefixMap());
+        }
+    } catch (Exception e) {
+        logger.warn("Could not load ontology prefixes: {}", e.getMessage());
+    }
+    return ontologyPrefixes;
+}
 }
