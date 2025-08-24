@@ -9,7 +9,8 @@ COPY ../../pom.xml ./
 COPY ../../src ./src
 
 # Build the JAR file (skip tests for speed, remove if you want tests)
-RUN mvn clean package -DskipTests
+RUN mvn clean package -DskipTests \
+    && mvn dependency:copy-dependencies -DoutputDirectory=target/dependency
 
 # --- Runtime Stage ---
 FROM eclipse-temurin:21-jdk
@@ -24,7 +25,9 @@ LABEL org.opencontainers.image.licenses="EUPL-1.2"
 WORKDIR /app
 
 # Copy the built JAR from the build stage
-COPY --from=build /build/target/catalogue-1.0.jar /app/sedimark-catalogue-server.jar
+# COPY --from=build /build/target/catalogue-1.0.jar /app/sedimark-catalogue-server.jar
+COPY --from=build /build/target/catalogue-1.0.jar /app/
+COPY --from=build /build/target/dependency /app/lib
 
 # Create a directory for TDB2 storage
 RUN mkdir -p /data/sedimark-tdb
@@ -71,7 +74,7 @@ fi \n\
 CMD_OPTS="$CMD_OPTS --port $SERVER_PORT" \n\
 \n\
 # Run the Java application with all options \n\
-exec java $JAVA_OPTS -jar /app/sedimark-catalogue-server.jar $CMD_OPTS $@' > /app/docker-entrypoint.sh \
+exec java $JAVA_OPTS -cp "/app/catalogue-1.0.jar:/app/lib/*" eu.sedimark.catalogue.CatalogueServerLauncher $CMD_OPTS $@' > /app/docker-entrypoint.sh \
     && chmod +x /app/docker-entrypoint.sh
 
 # Set the entrypoint
