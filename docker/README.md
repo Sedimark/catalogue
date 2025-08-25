@@ -2,7 +2,6 @@
 
 ## Usage Instructions
 
-
 ### Building the Docker Image
 
 From the project root directory (recommended):
@@ -11,7 +10,7 @@ From the project root directory (recommended):
 docker build -f docker/Dockerfile -t sedimark/catalogue-server:1.0 .
 ```
 
-This command will build the Docker image using the multi-stage Dockerfile. The JAR will be built inside the container, so you do not need to build it locally first.
+This command will build the Docker image using the multi-stage Dockerfile. The JAR and all required dependencies will be built inside the container, so you do not need to build them locally first.
 
 Alternatively, you can build from the `docker` directory:
 
@@ -58,6 +57,18 @@ Custom port mapping:
 docker run -d -p 8080:3030 -e SERVER_PORT=3030 --name sedimark-catalogue sedimark/catalogue-server:1.0
 ```
 
+### How Dependencies Are Handled
+
+This image does **not** use the Maven Shade plugin.  
+Instead, it builds a standard JAR and copies all required dependencies into `/app/lib` inside the container.  
+The entrypoint script runs the application with the correct classpath:
+
+```
+java -cp "/app/catalogue-1.0.jar:/app/lib/*" eu.sedimark.catalogue.CatalogueServerLauncher
+```
+
+This keeps the image size smaller and avoids packing all dependencies into a single fat JAR.
+
 ### Environment Variables
 
 | Variable      | Default  | Description                                       |
@@ -103,5 +114,3 @@ Following logs in real-time:
 ```bash
 docker logs -f sedimark-catalogue
 ```
-
-This Dockerfile and usage instructions provide a complete containerization solution for the SEDIMARK Catalogue Server with all configuration options accessible as environment variables.

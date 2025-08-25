@@ -51,27 +51,30 @@ catalogue
    ```
 
 2. **Build the Project**
-   Use Maven to build the project:
+   Use Maven to build the project and copy dependencies:
    ```bash
    mvn clean package
    ```
+   This will create:
+   - `target/catalogue-1.0.jar` (main application JAR)
+   - `target/dependency/` (folder containing all required dependency JARs)
 
 3. **Run the Fuseki Server**
-   Execute the main class with options for storage type and other settings:
-   
+   Execute the main class with all dependencies on the classpath:
+
    In-memory storage (default):
    ```bash
-   java -jar target/catalogue-1.0.jar
+   java -cp "target/catalogue-1.0.jar:target/dependency/*" eu.sedimark.catalogue.CatalogueServerLauncher
    ```
-   
+
    Persistent TDB storage:
    ```bash
-   java -jar target/catalogue-1.0.jar --tdb
+   java -cp "target/catalogue-1.0.jar:target/dependency/*" eu.sedimark.catalogue.CatalogueServerLauncher --tdb
    ```
-   
+
    With example data:
    ```bash
-   java -jar target/catalogue-1.0.jar --load-examples
+   java -cp "target/catalogue-1.0.jar:target/dependency/*" eu.sedimark.catalogue.CatalogueServerLauncher --load-examples
    ```
 
 4. **Command Line Options**
@@ -90,6 +93,13 @@ catalogue
    ```
    http://localhost:3030/
    ```
+
+---
+
+**Note:**  
+You do **not** need Maven installed to run the server, only to build it.  
+After building, distribute `target/catalogue-1.0.jar` and all JARs in `target/dependency/` together.  
+Always use the `-cp` (classpath) approach as shown above to run the server.
 
 ## SEDIMARK Catalogue Interfaces
 

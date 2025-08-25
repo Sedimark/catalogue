@@ -4,6 +4,15 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>
+@prefix vocab: <https://w3id.org/sedimark/vocab#> .
+@prefix http: <http://www.w3.org/2011/http#>
+
 @base <https://w3id.org/sedimark/ontology#> .
 
 <https://w3id.org/sedimark/ontology> rdf:type owl:Ontology ;
