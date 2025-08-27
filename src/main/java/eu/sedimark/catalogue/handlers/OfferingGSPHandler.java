@@ -183,6 +183,11 @@ public class OfferingGSPHandler implements ActionProcessor { // Implement, don't
                     // Graph exists, get its content
                     Model model = dataset.getNamedModel(graphParam);
 
+                    // Create a copy for pretty-printing
+                    Model prettyModel = ModelFactory.createDefaultModel();
+                    prettyModel.add(model);
+                    prettyModel.setNsPrefixes(loadOntologyPrefixes());
+
                     // Log the prefixes available in the model
                     Map<String, String> prefixMap = model.getNsPrefixMap();
                     logger.debug("Retrieved model has {} prefixes", prefixMap.size());
@@ -232,11 +237,10 @@ public class OfferingGSPHandler implements ActionProcessor { // Implement, don't
 
                         action.getResponse().setStatus(HttpServletResponse.SC_OK);
 
-                        model.setNsPrefixes(loadOntologyPrefixes());
-
+                        // model.setNsPrefixes(loadOntologyPrefixes());
 
                         // Write the model in the requested RDF format
-                        RDFDataMgr.write(action.getResponseOutputStream(), model, outputLang);
+                        RDFDataMgr.write(action.getResponseOutputStream(), prettyModel, outputLang);
                     }
                 } else {
                     // Graph doesn't exist - return 404 with JSON error response
@@ -552,59 +556,61 @@ public class OfferingGSPHandler implements ActionProcessor { // Implement, don't
      * Store the extracted offering graphs in the dataset with enhanced prefix
      * handling
      */
-   private void storeOfferingGraphs(List<NamedSubgraph> namedGraphs) throws IOException {
-    dataset.begin(ReadWrite.WRITE);
-    try {
-        for (NamedSubgraph graph : namedGraphs) {
-            String graphName = graph.getGraphName();
-            Model modelToStore = graph.getModel();
+    private void storeOfferingGraphs(List<NamedSubgraph> namedGraphs) throws IOException {
+        dataset.begin(ReadWrite.WRITE);
+        try {
+            for (NamedSubgraph graph : namedGraphs) {
+                String graphName = graph.getGraphName();
+                Model modelToStore = graph.getModel();
 
-            // Remove existing graph if present
-            if (dataset.containsNamedModel(graphName)) {
-                logger.info("Replacing existing named graph: {}", graphName);
-                dataset.removeNamedModel(graphName);
-            }
+                // Remove existing graph if present
+                if (dataset.containsNamedModel(graphName)) {
+                    logger.info("Replacing existing named graph: {}", graphName);
+                    dataset.removeNamedModel(graphName);
+                }
 
-            // Store the model (prefixes will not be persisted, but triples will)
-            dataset.addNamedModel(graphName, modelToStore);
+                // Store the model (prefixes will not be persisted, but triples will)
+                dataset.addNamedModel(graphName, modelToStore);
 
-            Model storedModel = dataset.getNamedModel(graphName);
-            logger.info("Graph {} stored with {} statements.", graphName, storedModel.size());
-        }
-        dataset.commit();
-    } catch (Exception e) {
-        dataset.abort();
-        throw new IOException("Error storing named graphs", e);
-    } finally {
-        dataset.end();
-    }
-
-    // Post-commit check (optional, for debugging)
-    dataset.begin(ReadWrite.READ);
-    try {
-        for (NamedSubgraph graph : namedGraphs) {
-            String graphName = graph.getGraphName();
-            if (dataset.containsNamedModel(graphName)) {
                 Model storedModel = dataset.getNamedModel(graphName);
-                logger.info("Post-commit check: Graph {} exists with {} statements.", graphName, storedModel.size());
-            } else {
-                logger.warn("Post-commit check: Graph {} does NOT exist in dataset!", graphName);
+                logger.info("Graph {} stored with {} statements.", graphName, storedModel.size());
             }
+            dataset.commit();
+        } catch (Exception e) {
+            dataset.abort();
+            throw new IOException("Error storing named graphs", e);
+        } finally {
+            dataset.end();
         }
-    } finally {
-        dataset.end();
+
+        // Post-commit check (optional, for debugging)
+        dataset.begin(ReadWrite.READ);
+        try {
+            for (NamedSubgraph graph : namedGraphs) {
+                String graphName = graph.getGraphName();
+                if (dataset.containsNamedModel(graphName)) {
+                    Model storedModel = dataset.getNamedModel(graphName);
+                    logger.info("Post-commit check: Graph {} exists with {} statements.", graphName,
+                            storedModel.size());
+                } else {
+                    logger.warn("Post-commit check: Graph {} does NOT exist in dataset!", graphName);
+                }
+            }
+        } finally {
+            dataset.end();
+        }
+
+        // List all graph names after commit (optional, for debugging)
+        dataset.begin(ReadWrite.READ);
+        try {
+            List<String> graphNames = new ArrayList<>();
+            dataset.listNames().forEachRemaining(graphNames::add);
+            logger.info("All graph names after commit: {}", graphNames);
+        } finally {
+            dataset.end();
+        }
     }
 
-    // List all graph names after commit (optional, for debugging)
-    dataset.begin(ReadWrite.READ);
-    try {
-        List<String> graphNames = new ArrayList<>();
-        dataset.listNames().forEachRemaining(graphNames::add);
-        logger.info("All graph names after commit: {}", graphNames);
-    } finally {
-        dataset.end();
-    }
-}
     /**
      * Determine the output format based on Accept header
      */
@@ -702,20 +708,21 @@ public class OfferingGSPHandler implements ActionProcessor { // Implement, don't
 
     private static Map<String, String> ontologyPrefixes = null;
 
-private static Map<String, String> loadOntologyPrefixes() {
-    if (ontologyPrefixes != null) return ontologyPrefixes;
-    ontologyPrefixes = new HashMap<>();
-    try {
-        Model ontologyModel = ModelFactory.createDefaultModel();
-        // Adjust path if needed
-        InputStream in = OfferingGSPHandler.class.getResourceAsStream("/ontology/sedimark-ontology.ttl");
-        if (in != null) {
-            ontologyModel.read(in, null, "TURTLE");
-            ontologyPrefixes.putAll(ontologyModel.getNsPrefixMap());
+    private static Map<String, String> loadOntologyPrefixes() {
+        if (ontologyPrefixes != null)
+            return ontologyPrefixes;
+        ontologyPrefixes = new HashMap<>();
+        try {
+            Model ontologyModel = ModelFactory.createDefaultModel();
+            // Adjust path if needed
+            InputStream in = OfferingGSPHandler.class.getResourceAsStream("/ontology/sedimark-ontology.ttl");
+            if (in != null) {
+                ontologyModel.read(in, null, "TURTLE");
+                ontologyPrefixes.putAll(ontologyModel.getNsPrefixMap());
+            }
+        } catch (Exception e) {
+            logger.warn("Could not load ontology prefixes: {}", e.getMessage());
         }
-    } catch (Exception e) {
-        logger.warn("Could not load ontology prefixes: {}", e.getMessage());
+        return ontologyPrefixes;
     }
-    return ontologyPrefixes;
-}
 }

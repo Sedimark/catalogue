@@ -64,19 +64,22 @@ public class CatalogueServerLauncher {
             }
         }
 
-        // Create handlers
-        // TestHandler testHandler = new TestHandler();
-        OfferingGSPHandler offeringHandler = new OfferingGSPHandler(dataset);
-        OfferingListingService graphListingService = new OfferingListingService(dataset, SEDIMARK_OFFERING);
+    // Create handlers
+    TestHandler testHandler = new TestHandler();
+    OfferingGSPHandler offeringHandler = new OfferingGSPHandler(dataset);
+    OfferingListingService graphListingService = new OfferingListingService(dataset, SEDIMARK_OFFERING);
+    eu.sedimark.catalogue.handlers.QueryUIProcessor queryUIProcessor = new eu.sedimark.catalogue.handlers.QueryUIProcessor(dataset);
 
-        // Create and start Fuseki server with custom GSP handler
-        FusekiServer server = FusekiServer.create()
-                .port(arguments.port)
-                .add("/catalogue", dataset) // Mount dataset at /catalogue endpoint
-                .addProcessor("/catalogue/manager", offeringHandler) // Use custom handler for GSP
-                // .addProcessor("/catalogue/test", testHandler) // Test handler on a different endpoint
-                .addServlet("/catalogue/graphs", graphListingService) // graph listing service
-                .build();
+    // Create and start Fuseki server with custom GSP handler
+    FusekiServer.Builder builder = FusekiServer.create()
+        .port(arguments.port)
+        .add("/catalogue", dataset) // Mount dataset at /catalogue endpoint
+        .addProcessor("/catalogue/manager", offeringHandler) // Use custom handler for GSP
+        // .addProcessor("/catalogue/test", testHandler) // Test handler on a different endpoint
+        .addServlet("/catalogue/graphs", graphListingService) // graph listing service
+        .addProcessor("/catalogue/query-ui", queryUIProcessor); // SPARQL Query UI endpoint
+
+        FusekiServer server = builder.build();
 
         // Use debug helper if requested
         if (arguments.debug) {

@@ -68,52 +68,59 @@ public class OfferingListingService extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         try {
-            // Log information for debugging
-            logger.info("GraphListingService: doGet called");
-            logger.info("Dataset contains {} named graphs", getNamedGraphCount());
+            dataset.begin(org.apache.jena.query.ReadWrite.READ);
+            try {
+                // Log information for debugging
+                logger.info("GraphListingService: doGet called");
+                logger.info("Dataset contains {} named graphs", getNamedGraphCount());
 
-            // Initialize response
-            resp.setContentType("application/json");
-            PrintWriter out = resp.getWriter();
+                // Initialize response
+                resp.setContentType("application/json");
+                PrintWriter out = resp.getWriter();
 
-            // Get all named graph URIs containing sedimark:Offering instances
-            List<String> offeringGraphs = findOfferingGraphs();
-            logger.info("Found {} offering graphs", offeringGraphs.size());
+                // Get all named graph URIs containing sedimark:Offering instances
+                List<String> offeringGraphs = findOfferingGraphs();
+                logger.info("Found {} offering graphs", offeringGraphs.size());
 
-            // Build detailed JSON response
-            StringBuilder jsonBuilder = new StringBuilder();
-            jsonBuilder.append("{\n");
-            jsonBuilder.append("  \"status\": \"success\",\n");
-            jsonBuilder.append("  \"message\": \"Retrieved offering graphs\",\n");
-            jsonBuilder.append("  \"totalCount\": ").append(offeringGraphs.size()).append(",\n");
-            jsonBuilder.append("  \"offerings\": [\n");
+                // Build detailed JSON response
+                StringBuilder jsonBuilder = new StringBuilder();
+                jsonBuilder.append("{\n");
+                jsonBuilder.append("  \"status\": \"success\",\n");
+                jsonBuilder.append("  \"message\": \"Retrieved offering graphs\",\n");
+                jsonBuilder.append("  \"totalCount\": ").append(offeringGraphs.size()).append(",\n");
+                jsonBuilder.append("  \"offerings\": [\n");
 
-            for (int i = 0; i < offeringGraphs.size(); i++) {
-                String graphName = offeringGraphs.get(i);
+                for (int i = 0; i < offeringGraphs.size(); i++) {
+                    String graphName = offeringGraphs.get(i);
 
-                // Get self-listing URI from the graph
-                String selfURI = getSelfListingURI(graphName);
+                    // Get self-listing URI from the graph
+                    String selfURI = getSelfListingURI(graphName);
 
-                // Get count of linked assets instead of statements
-                int assetCount = countLinkedAssets(graphName);
+                    // Get count of linked assets instead of statements
+                    int assetCount = countLinkedAssets(graphName);
 
-                jsonBuilder.append("    {\n")
-                        .append("      \"uri\": \"").append(escapeJsonString(graphName)).append("\",\n")
-                        .append("      \"selfListing\": \"").append(escapeJsonString(selfURI)).append("\",\n")
-                        .append("      \"assets\": ").append(assetCount).append("\n")
-                        .append("    }");
-                if (i < offeringGraphs.size() - 1) {
-                    jsonBuilder.append(",");
+                    jsonBuilder.append("    {\n")
+                            .append("      \"uri\": \"").append(escapeJsonString(graphName)).append("\",\n")
+                            .append("      \"selfListing\": \"").append(escapeJsonString(selfURI)).append("\",\n")
+                            .append("      \"assets\": ").append(assetCount).append("\n")
+                            .append("    }");
+                    if (i < offeringGraphs.size() - 1) {
+                        jsonBuilder.append(",");
+                    }
+                    jsonBuilder.append("\n");
                 }
-                jsonBuilder.append("\n");
-            }
 
-            jsonBuilder.append("  ],\n");
-            jsonBuilder.append("  \"timestamp\": \"").append(getIsoTimestamp()).append("\"\n");
-            jsonBuilder.append("}");
-            out.write(jsonBuilder.toString());
+                jsonBuilder.append("  ],\n");
+                jsonBuilder.append("  \"timestamp\": \"").append(getIsoTimestamp()).append("\"\n");
+                jsonBuilder.append("}");
+                out.write(jsonBuilder.toString());
+            } finally {
+                dataset.end();
+            }
         } catch (Exception e) {
-            // Error handling remains the same
+            logger.error("Error in OfferingListingService.doGet: {}", e.getMessage(), e);
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("{\"status\":\"error\",\"message\":\"Internal server error\"}");
         }
     }
 
