@@ -1,0 +1,28 @@
+PREFIX http: <http://www.w3.org/2011/http#> 
+PREFIX sedi: <https://w3id.org/sedimark/ontology#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX xml: <http://www.w3.org/XML/1998/namespace> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX dcat: <http://www.w3.org/ns/dcat#> 
+PREFIX dct: <http://purl.org/dc/terms/> 
+PREFIX vocab: <https://w3id.org/sedimark/vocab#> 
+PREFIX schema: <https://schema.org/> 
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
+SELECT DISTINCT ?offering ?asset ?title ?publisher ?alternateName 
+WHERE { 
+    GRAPH ?g {   
+        ?offering a sedi:Offering .   
+        ?offering sedi:hasAsset ?asset .   
+        ?offering dct:title ?title .   
+        ?offering sedi:isListedBy ?listing .   
+        ?listing sedi:belongsTo ?participant .   
+        ?participant schema:accountId ?publisher .   
+        ?participant schema:alternateName ?alternateName .   
+        FILTER(     
+            CONTAINS(LCASE(?title), "") ||     CONTAINS(LCASE(?description), "")   
+            ) }
+        } ORDER BY ?issued 
+LIMIT 10 
+OFFSET 0
