@@ -89,6 +89,7 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
+            <!-- frontend-maven-plugin removed: npm will not run during Maven builds -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>

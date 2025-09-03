@@ -25,10 +25,10 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFLanguages;
+// ... no servlet/resource imports needed for CDN-based Tailwind
 
 import eu.sedimark.catalogue.handlers.OfferingListingService;
 import eu.sedimark.catalogue.handlers.OfferingGSPHandler;
-import eu.sedimark.catalogue.handlers.TestHandler;
 import eu.sedimark.catalogue.loaders.SampleDatasetLoader;
 import eu.sedimark.catalogue.utils.ArgumentsHelper;
 import eu.sedimark.catalogue.utils.ArgumentsHelper.Arguments;
@@ -65,19 +65,21 @@ public class CatalogueServerLauncher {
         }
 
     // Create handlers
-    TestHandler testHandler = new TestHandler();
     OfferingGSPHandler offeringHandler = new OfferingGSPHandler(dataset);
     OfferingListingService graphListingService = new OfferingListingService(dataset, SEDIMARK_OFFERING);
+
     eu.sedimark.catalogue.handlers.QueryUIProcessor queryUIProcessor = new eu.sedimark.catalogue.handlers.QueryUIProcessor(dataset);
+    eu.sedimark.catalogue.handlers.QueryUITailwindProcessor queryUITailwindProcessor = new eu.sedimark.catalogue.handlers.QueryUITailwindProcessor(dataset);
 
     // Create and start Fuseki server with custom GSP handler
-    FusekiServer.Builder builder = FusekiServer.create()
+        FusekiServer.Builder builder = FusekiServer.create()
         .port(arguments.port)
         .add("/catalogue", dataset) // Mount dataset at /catalogue endpoint
         .addProcessor("/catalogue/manager", offeringHandler) // Use custom handler for GSP
         // .addProcessor("/catalogue/test", testHandler) // Test handler on a different endpoint
         .addServlet("/catalogue/graphs", graphListingService) // graph listing service
-        .addProcessor("/catalogue/query-ui", queryUIProcessor); // SPARQL Query UI endpoint
+        .addProcessor("/catalogue/query-ui", queryUIProcessor) // SPARQL Query UI endpoint
+            .addProcessor("/catalogue/query-ui-2", queryUITailwindProcessor); // Tailwind SPARQL Query UI endpoint (uses CDN)
 
         FusekiServer server = builder.build();
 
