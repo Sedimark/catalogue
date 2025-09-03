@@ -116,3 +116,5 @@ temp/
 .temp/
 .tmp/
 
+
+node_modules/
