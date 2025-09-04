@@ -1,0 +1,45 @@
+name: Build & Deploy Catalogue
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build & Push Docker image
+        run: |
+          IMAGE=ghcr.io/sedimark/catalogue-server
+          docker build -f docker/Dockerfile -t $IMAGE:latest .
+          docker push $IMAGE:latest
+
+  deploy:
+    runs-on: [self-hosted, deploy]
+    needs: build
+    steps:
+      - name: Log in to GHCR
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Pull & restart only catalogue service
+        run: |
+          cd /opt/compose 
+          docker compose pull catalogue
+          docker compose up -d catalogue
+
