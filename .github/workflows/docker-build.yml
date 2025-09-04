@@ -27,6 +27,6 @@ jobs:
       - name: Build and Push Docker image
         run: |
           IMAGE=ghcr.io/sedimark/catalogue
-          docker build -t $IMAGE:latest .
+          docker build -f docker/Dockerfile -t $IMAGE:latest .
           docker push $IMAGE:latest
 
