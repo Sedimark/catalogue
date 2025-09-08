@@ -40,6 +40,5 @@ jobs:
       - name: Pull & restart only catalogue service
         run: |
           cd /opt/compose 
-          docker compose pull catalogue
-          docker compose up -d catalogue
+          docker compose up -d --pull always catalogue-server
 
