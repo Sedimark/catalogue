@@ -33,6 +33,7 @@ import eu.sedimark.catalogue.loaders.SampleDatasetLoader;
 import eu.sedimark.catalogue.utils.ArgumentsHelper;
 import eu.sedimark.catalogue.utils.ArgumentsHelper.Arguments;
 import eu.sedimark.catalogue.utils.FusekiDebugHelper;
+import eu.sedimark.catalogue.servlets.ClasspathResourceServlet;
 
 public class CatalogueServerLauncher {
     private static final String SEDIMARK_OFFERING = "https://w3id.org/sedimark/ontology#Offering";
@@ -68,7 +69,7 @@ public class CatalogueServerLauncher {
     OfferingGSPHandler offeringHandler = new OfferingGSPHandler(dataset);
     OfferingListingService graphListingService = new OfferingListingService(dataset, SEDIMARK_OFFERING);
 
-    eu.sedimark.catalogue.handlers.QueryUIProcessor queryUIProcessor = new eu.sedimark.catalogue.handlers.QueryUIProcessor(dataset);
+    eu.sedimark.catalogue.handlers.QueryUIBootstrapProcessor queryUIProcessor = new eu.sedimark.catalogue.handlers.QueryUIBootstrapProcessor(dataset);
     eu.sedimark.catalogue.handlers.QueryUITailwindProcessor queryUITailwindProcessor = new eu.sedimark.catalogue.handlers.QueryUITailwindProcessor(dataset);
 
     // Create and start Fuseki server with custom GSP handler
@@ -78,8 +79,9 @@ public class CatalogueServerLauncher {
         .addProcessor("/catalogue/manager", offeringHandler) // Use custom handler for GSP
         // .addProcessor("/catalogue/test", testHandler) // Test handler on a different endpoint
         .addServlet("/catalogue/graphs", graphListingService) // graph listing service
-        .addProcessor("/catalogue/query-ui", queryUIProcessor) // SPARQL Query UI endpoint
-            .addProcessor("/catalogue/query-ui-2", queryUITailwindProcessor); // Tailwind SPARQL Query UI endpoint (uses CDN)
+        .addServlet("/static/*", new ClasspathResourceServlet()) // serve classpath static resources from JAR
+        .addProcessor("/catalogue/query-ui", queryUIProcessor); // SPARQL Query UI endpoint
+            // .addProcessor("/catalogue/query-ui-2", queryUITailwindProcessor); // Tailwind SPARQL Query UI endpoint (uses CDN)
 
         FusekiServer server = builder.build();
 
