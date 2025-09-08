@@ -31,7 +31,7 @@ jobs:
           docker push $IMAGE:latest
 
   deploy:
-    runs-on: [self-hosted, deploy]
+    runs-on: self-hosted
     needs: build
     steps:
       - name: Log in to GHCR
