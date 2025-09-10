@@ -29,6 +29,8 @@ jobs:
           IMAGE=ghcr.io/sedimark/catalogue-server
           docker build -f docker/Dockerfile -t $IMAGE:latest .
           docker push $IMAGE:latest
+          docker build -f docker/Dockerfile -t $IMAGE:dev .
+          docker push $IMAGE:dev
 
   deploy:
     runs-on: self-hosted
@@ -39,6 +41,6 @@ jobs:
 
       - name: Pull & restart only catalogue service
         run: |
-          cd /opt/compose 
+          cd /srv/pipelines/prod/ 
           docker compose up -d --pull always catalogue-server
 
