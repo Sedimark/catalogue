@@ -29,8 +29,6 @@ jobs:
           IMAGE=ghcr.io/sedimark/catalogue-server
           docker build -f docker/Dockerfile -t $IMAGE:latest .
           docker push $IMAGE:latest
-          docker build -f docker/Dockerfile -t $IMAGE:dev .
-          docker push $IMAGE:dev
 
   deploy:
     runs-on: self-hosted
