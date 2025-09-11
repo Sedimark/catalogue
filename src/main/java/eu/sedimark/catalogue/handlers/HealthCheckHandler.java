@@ -7,17 +7,17 @@ import java.io.IOException;
 /**
  * A minimal test handler just to confirm handler registration works
  */
-public class TestHandler implements ActionProcessor {
+public class HealthCheckHandler implements ActionProcessor {
     
     @Override
     public void process(HttpAction action) {
-        System.out.println("========== TEST HANDLER CALLED ==========");
+        // System.out.println("========== HEALTH CHECK ==========");
         
         try {
             // Set a test header
             action.getResponse().setHeader("X-Test-Handler", "Yes");
             action.getResponse().setContentType("text/plain");
-            action.getResponseOutputStream().write("TestHandler processed the request!".getBytes());
+            action.getResponseOutputStream().write("HealthCheckHandler processed the request!".getBytes());
         } catch (IOException e) {
             System.err.println("Error in test handler: " + e.getMessage());
         }
