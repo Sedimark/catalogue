@@ -125,8 +125,9 @@ public class ArgumentsHelper {
         System.out.println("  GSP endpoint:      http://localhost:" + server.getPort() + "/catalogue/data");
         System.out.println("  Offering publish:  http://localhost:" + server.getPort() + "/catalogue/manager");
         System.out.println("  Graph listing:     http://localhost:" + server.getPort() + "/catalogue/graphs");
-        System.out.println("  Test endpoint:     http://localhost:" + server.getPort() + "/catalogue/test");
-        
+        System.out.println("  Health endpoint:   http://localhost:" + server.getPort() + "/catalogue/health");
+        System.out.println("  Query UI (Bootstrap): http://localhost:" + server.getPort() + "/catalogue/query-ui");
+
         System.out.println("\nJSON-LD is enabled for Graph Store Protocol operations");
         System.out.println("Each sedimark:Offering will be stored in its own named graph");
         
