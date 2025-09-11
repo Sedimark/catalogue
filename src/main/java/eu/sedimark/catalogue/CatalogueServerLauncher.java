@@ -28,6 +28,7 @@ import org.apache.jena.riot.RDFLanguages;
 // ... no servlet/resource imports needed for CDN-based Tailwind
 
 import eu.sedimark.catalogue.handlers.OfferingListingService;
+import eu.sedimark.catalogue.handlers.HealthCheckHandler;
 import eu.sedimark.catalogue.handlers.OfferingGSPHandler;
 import eu.sedimark.catalogue.loaders.SampleDatasetLoader;
 import eu.sedimark.catalogue.utils.ArgumentsHelper;
@@ -68,6 +69,7 @@ public class CatalogueServerLauncher {
     // Create handlers
     OfferingGSPHandler offeringHandler = new OfferingGSPHandler(dataset);
     OfferingListingService graphListingService = new OfferingListingService(dataset, SEDIMARK_OFFERING);
+    HealthCheckHandler healthCheckHandler = new HealthCheckHandler();
 
     eu.sedimark.catalogue.handlers.QueryUIBootstrapProcessor queryUIProcessor = new eu.sedimark.catalogue.handlers.QueryUIBootstrapProcessor(dataset);
     eu.sedimark.catalogue.handlers.QueryUITailwindProcessor queryUITailwindProcessor = new eu.sedimark.catalogue.handlers.QueryUITailwindProcessor(dataset);
@@ -77,7 +79,7 @@ public class CatalogueServerLauncher {
         .port(arguments.port)
         .add("/catalogue", dataset) // Mount dataset at /catalogue endpoint
         .addProcessor("/catalogue/manager", offeringHandler) // Use custom handler for GSP
-        // .addProcessor("/catalogue/test", testHandler) // Test handler on a different endpoint
+        .addProcessor("/catalogue/health", healthCheckHandler) // Test handler on a different endpoint
         .addServlet("/catalogue/graphs", graphListingService) // graph listing service
         .addServlet("/static/*", new ClasspathResourceServlet()) // serve classpath static resources from JAR
         .addProcessor("/catalogue/query-ui", queryUIProcessor); // SPARQL Query UI endpoint
