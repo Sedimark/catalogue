@@ -40,5 +40,5 @@ jobs:
       - name: Pull & restart only catalogue service
         run: |
           cd /srv/pipelines/prod/ 
-          docker compose up -d --pull always catalogue-server
+          bash restart-service.sh
 
