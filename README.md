@@ -288,3 +288,7 @@ This project uses the following dependencies:
 This software is licensed under the [European Union Public License 1.2](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12) (EUPL-1.2).
 
 This updated README reflects the new project structure, command-line options, storage choices, and includes information about the utility classes and debugging features.
+
+## Acknowledgement
+
+This software has been developed by the [University of Surrey](https://www.surrey.ac.uk/) under the [SEDIMARK (SEcure Decentralised Intelligent Data MARKetplace)](https://sedimark.eu/) project. SEDIMARK is funded by the European Union under the Horizon Europe framework programme [grant no. 101070074]. This project is also partly funded by UK Research and Innovation (UKRI) under the UK government’s Horizon Europe funding guarantee [grant no. 10043699].
