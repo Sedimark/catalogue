@@ -79,7 +79,7 @@ public class QueryUIBootstrapProcessor implements ActionProcessor {
         html.append("<div class='container'>");
         html.append("<div class='header'>");
         html.append(
-                "<img class='logo' src='https://sedimark.eu/wp-content/uploads/2022/11/cropped-sedimark_logo_512x512.png' alt='SEDIMARK Logo'/>");
+                "<img class='logo' src='https://avatars.githubusercontent.com/u/122981959' alt='SEDIMARK Logo'/>");
         html.append("<div>");
         html.append("<h1 class='h4 mb-0'>SEDIMARK Catalogue Explorer</h1>");
         html.append(
